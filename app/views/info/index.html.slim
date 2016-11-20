@@ -1,0 +1,9 @@
+.row
+  .col-md-12
+    h1.heading-xlarge Welcome
+    -if signed_in?
+      p.lead You are now signed in... Time to build the rest of your application to show special things to signed in people.
+      = link_to "Sign out", signout_path, :class=>"button danger"
+    -else
+      p.lead Please log in below.
+      = link_to "Sign in", "/auth/google_oauth2", :class=>"button button-start"

@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+#use dotenv to load environment file
+#this way you can use "rails s" instaed of "heroku local" and get all your .env vars and still use the debugger, etc.
+gem 'dotenv-rails', :groups => [:development, :test]
+
+#authentication
+gem "omniauth-google-oauth2"
+
 
 gem 'puma'
 gem "slim-rails"
