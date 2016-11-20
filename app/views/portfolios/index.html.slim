@@ -1,0 +1,31 @@
+.page-header
+  = link_to new_portfolio_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Portfolio
+  h1
+    | Listing portfolios
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Name
+        th
+          | Person
+        th
+        th
+        th
+    tbody
+      - @portfolios.each do | portfolio |
+        tr
+          td
+            = portfolio.name
+          td
+            = link_to portfolio.person.name, portfolio.person
+          td
+            = link_to 'Show', portfolio
+          td
+            = link_to 'Edit', edit_portfolio_path(portfolio) 
+          td
+            = link_to 'Destroy', portfolio, method: :delete, data: { confirm: 'Are you sure?' } 

@@ -1,0 +1,18 @@
+.page-header
+  = link_to portfolios_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_portfolio_path(@portfolio), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show portfolio
+dl.dl-horizontal
+  dt
+    | Name:
+  dd
+    = @portfolio.name
+  dt
+    | Person:
+  dd
+    = link_to @portfolio.person.name, @portfolio.person
