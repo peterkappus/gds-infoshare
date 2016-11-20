@@ -29,17 +29,8 @@
           li =link_to "About", about_path
           - if (signed_in?)
             li = link_to "Sign out", signout_path
-          
-        /
-          - if (signed_in?)
-            ul#proposition-links
-              /li =link_to "Home", goals_path
-              /li =link_to "Groups and Teams", groups_path
-              /li = link_to "SDP goals", sdp_goals_path
-              /li =link_to "Teams", teams_path
-              /li =link_to "About", about_path
-              -if is_admin?
-                li =link_to "Manage users", users_path
+            -if is_admin?
+              li =link_to "Manage users", users_path        
 - content_for :body_end
   - if(ENV['GOOGLE_ANALYTICS_ID'].present?)
     javascript:
@@ -62,12 +53,11 @@
             p
               strong.phase-tag PRE-ALPHA
               span This is a proof of concept only.
-          /
-            - if signed_in?
-              .row.account_info.noprint
-                .col-md-12
-                  .pull-right
-                    span #{link_to current_user.name, current_user}: #{link_to 'Sign out', signout_path}
+          - if signed_in?
+            .row.account_info.noprint
+              .col-md-12
+                .pull-right
+                  span #{link_to current_user.name, current_user}: #{link_to 'Sign out', signout_path}
 
           .inner-block
             - flash.each do |name, msg|

@@ -1,0 +1,31 @@
+.page-header
+  = link_to new_department_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Department
+  h1
+    | Listing departments
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Name
+        th
+          | Description
+        th
+        th
+        th
+    tbody
+      - @departments.each do | department |
+        tr
+          td
+            = department.name
+          td
+            = department.description
+          td
+            = link_to 'Show', department
+          td
+            = link_to 'Edit', edit_department_path(department) 
+          td
+            = link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } 

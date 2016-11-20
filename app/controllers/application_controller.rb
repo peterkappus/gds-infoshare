@@ -4,9 +4,22 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   #export our helper method
-  helper_method :signed_in?
+  helper_method :signed_in?, :current_user, :is_admin?
 
   before_filter :check_login, :except=>:about
+
+  #admin methods
+  def is_admin?
+    signed_in? && current_user.admin?
+  end
+
+  def check_admin
+    if !is_admin?
+      flash['error'] = "The action you've requested requires admin privileges. "
+      redirect_to root_path
+    end
+  end
+
 
   def signed_in?
     #current_user && !current_user.name.to_s.empty? && !current_user.email.to_s.empty?
@@ -19,6 +32,10 @@ class ApplicationController < ActionController::Base
       render "info/index"
       return
     end
+  end
+
+  def current_user
+    User.find_by(:email=>session['user_email'])
   end
 
 end

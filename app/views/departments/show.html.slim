@@ -1,0 +1,18 @@
+.page-header
+  = link_to departments_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_department_path(@department), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show department
+dl.dl-horizontal
+  dt
+    | Name:
+  dd
+    = @department.name
+  dt
+    | Description:
+  dd
+    = @department.description
