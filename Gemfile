@@ -71,6 +71,21 @@ group :development, :test do
 end
 
 group :development do
+
+  #cucumber stuff, for now, only doing this in development
+  gem 'cucumber' #our testing framework
+  gem 'capybara' #nice DSL for talking to the browser in code.
+  gem 'selenium-webdriver' #usual, firefox driver
+  gem 'phantomjs'
+  gem 'poltergeist' #headless driver
+  gem 'rspec' #gives us a few nice methods like "page.should"
+  gem 'pry' # for command line debugging
+  gem 'capybara-screenshot'
+  gem 'firefox'
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

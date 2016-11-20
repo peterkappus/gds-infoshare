@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     arel (6.0.3)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -44,6 +46,20 @@ GEM
     bootstrap-select-rails (1.6.3)
     builder (3.2.2)
     byebug (9.0.6)
+    capybara (2.10.1)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    capybara-screenshot (1.0.14)
+      capybara (>= 1.0, < 3)
+      launchy
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
+    cliver (0.3.2)
+    coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -52,7 +68,26 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    cucumber (2.4.0)
+      builder (>= 2.1.2)
+      cucumber-core (~> 1.5.0)
+      cucumber-wire (~> 0.0.1)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 4.0)
+      multi_json (>= 1.7.5, < 2.0)
+      multi_test (>= 0.1.2)
+    cucumber-core (1.5.0)
+      gherkin (~> 4.0)
+    cucumber-rails (1.4.5)
+      capybara (>= 1.1.2, < 3)
+      cucumber (>= 1.3.8, < 4)
+      mime-types (>= 1.16, < 4)
+      nokogiri (~> 1.5)
+      railties (>= 3, < 5.1)
+    cucumber-wire (0.0.1)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
+    diff-lcs (1.2.5)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
@@ -61,6 +96,10 @@ GEM
     execjs (2.7.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    ffi (1.9.14)
+    firefox (0.1.0)
+      inifile
+    gherkin (4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     govuk_elements_rails (2.1.1)
@@ -74,6 +113,7 @@ GEM
       rails (>= 3.1)
     hashie (3.4.6)
     i18n (0.7.0)
+    inifile (3.0.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -89,16 +129,20 @@ GEM
     kaminari-bootstrap (3.0.1)
       kaminari (>= 0.13.0)
       rails
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     multi_json (1.12.1)
+    multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nokogiri (1.6.8.1)
@@ -121,6 +165,16 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.19.0)
+    phantomjs (2.1.1.0)
+    poltergeist (1.11.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    public_suffix (2.0.4)
     puma (3.6.0)
     rack (1.6.5)
     rack-test (0.6.3)
@@ -151,6 +205,20 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (11.3.0)
     rdoc (4.3.0)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    rubyzip (1.2.0)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -161,6 +229,10 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selenium-webdriver (3.0.1)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
@@ -168,6 +240,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
+    slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     sprockets (3.7.0)
@@ -193,6 +266,12 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    websocket (1.2.3)
+    websocket-driver (0.6.4)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -201,8 +280,14 @@ DEPENDENCIES
   bootstrap-generators (~> 3.3.4)
   bootstrap-select-rails
   byebug
+  capybara
+  capybara-screenshot
   coffee-rails (~> 4.1.0)
+  cucumber
+  cucumber-rails
+  database_cleaner
   dotenv-rails
+  firefox
   govuk_elements_rails
   govuk_frontend_toolkit
   govuk_template
@@ -211,10 +296,15 @@ DEPENDENCIES
   kaminari-bootstrap (~> 3.0.1)
   omniauth-google-oauth2
   pg (~> 0.15)
+  phantomjs
+  poltergeist
+  pry
   puma
   rails (= 4.2.6)
+  rspec
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  selenium-webdriver
   slim-rails
   spring
   turbolinks
