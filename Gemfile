@@ -4,6 +4,28 @@ source 'https://rubygems.org'
 gem 'puma'
 gem "slim-rails"
 
+#for GOV.UK template
+gem 'govuk_template'
+#gem 'slimmer'
+
+#for other GOV.UK elements
+gem 'govuk_elements_rails'
+
+#for sass mixins
+gem 'govuk_frontend_toolkit'
+
+
+#pagination
+#gem "kaminari"
+gem 'kaminari-bootstrap', '~> 3.0.1'
+
+#bootstrap-generators
+gem 'bootstrap-generators', '~> 3.3.4'
+
+#for pretty select boxes
+# use class="selectpicker"
+gem 'bootstrap-select-rails'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
