@@ -1,0 +1,18 @@
+.page-header
+  = link_to organisations_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_organisation_path(@organisation), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show organisation
+dl.dl-horizontal
+  dt
+    | Name:
+  dd
+    = @organisation.name
+  dt
+    | Department:
+  dd
+    = @organisation.department.name

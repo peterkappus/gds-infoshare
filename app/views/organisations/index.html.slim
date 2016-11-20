@@ -1,0 +1,31 @@
+.page-header
+  = link_to new_organisation_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Organisation
+  h1
+    | Listing organisations
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Name
+        th
+          | Department
+        th
+        th
+        th
+    tbody
+      - @organisations.each do | organisation |
+        tr
+          td
+            = organisation.name
+          td
+            = link_to organisation.department.name, organisation.department
+          td
+            = link_to 'Show', organisation
+          td
+            = link_to 'Edit', edit_organisation_path(organisation) 
+          td
+            = link_to 'Destroy', organisation, method: :delete, data: { confirm: 'Are you sure?' } 

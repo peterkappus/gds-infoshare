@@ -1,0 +1,12 @@
+.page-header
+  = link_to organisations_path, class: 'btn btn-default' do
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to @organisation, class: 'btn btn-primary' do
+    span.glyphicon.glyphicon-info-sign
+    |  Show 
+  h1
+    | Editing 
+    | organisation
+
+= render 'form'
