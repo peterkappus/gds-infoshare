@@ -4,4 +4,8 @@ class InfoController < ApplicationController
 
   def about
   end
+
+  def import_data
+  end
+  
 end

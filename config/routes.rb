@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :users
   resources :departments
+
+
+
+  post '/import_data' => "info#import", as: :import_data
+
   #static pages
   get '/about' => 'info#about', as: :about
 
