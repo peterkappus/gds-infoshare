@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  portfolio_id: 
+  person_id: 
+  department_id: 
+  organisation_id: 
+  location: MyString
+  tech_layer: MyString
+  existing_solution: MyText
+  alternative_solution: MyText
+  cts_solution: MyText
+  benefit_type: MyString
+  state: MyString
+  comments: MyText
+
+two:
+  portfolio_id: 
+  person_id: 
+  department_id: 
+  organisation_id: 
+  location: MyString
+  tech_layer: MyString
+  existing_solution: MyText
+  alternative_solution: MyText
+  cts_solution: MyText
+  benefit_type: MyString
+  state: MyString
+  comments: MyText

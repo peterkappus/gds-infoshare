@@ -1,0 +1,58 @@
+.page-header
+  = link_to deployments_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_deployment_path(@deployment), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show deployment
+dl.dl-horizontal
+  dt
+    | Portfolio:
+  dd
+    = @deployment.portfolio
+  dt
+    | Person:
+  dd
+    = @deployment.person
+  dt
+    | Department:
+  dd
+    = @deployment.department
+  dt
+    | Organisation:
+  dd
+    = @deployment.organisation
+  dt
+    | Location:
+  dd
+    = @deployment.location
+  dt
+    | Tech layer:
+  dd
+    = @deployment.tech_layer
+  dt
+    | Existing solution:
+  dd
+    = @deployment.existing_solution
+  dt
+    | Alternative solution:
+  dd
+    = @deployment.alternative_solution
+  dt
+    | Cts solution:
+  dd
+    = @deployment.cts_solution
+  dt
+    | Benefit type:
+  dd
+    = @deployment.benefit_type
+  dt
+    | State:
+  dd
+    = @deployment.state
+  dt
+    | Comments:
+  dd
+    = @deployment.comments

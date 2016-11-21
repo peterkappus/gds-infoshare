@@ -1,0 +1,63 @@
+= form_for(@deployment, html: { class: "form-horizontal", role: "form" }) do |f|
+  - if @deployment.errors.any?
+    .alert.alert-danger.alert-dismissable role="alert"
+      button.close type="button" data-dismiss="alert"
+        span aria-hidden="true"
+          | &times;
+        span.sr-only
+          | Close
+      h4= "#{pluralize(@deployment.errors.count,"error")} prohibited this deployment from being saved:"
+      ul
+        - @deployment.errors.full_messages.each do |msg|
+          li= msg
+  .form-group
+    = f.label :portfolio, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :portfolio, class: "form-control"
+  .form-group
+    = f.label :person, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :person, class: "form-control"
+  .form-group
+    = f.label :department, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :department, class: "form-control"
+  .form-group
+    = f.label :organisation, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :organisation, class: "form-control"
+  .form-group
+    = f.label :location, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :location, class: "form-control"
+  .form-group
+    = f.label :tech_layer, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :tech_layer, class: "form-control"
+  .form-group
+    = f.label :existing_solution, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :existing_solution, class: "form-control"
+  .form-group
+    = f.label :alternative_solution, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :alternative_solution, class: "form-control"
+  .form-group
+    = f.label :cts_solution, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :cts_solution, class: "form-control"
+  .form-group
+    = f.label :benefit_type, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :benefit_type, class: "form-control"
+  .form-group
+    = f.label :state, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :state, class: "form-control"
+  .form-group
+    = f.label :comments, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :comments, class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-primary"

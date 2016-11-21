@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120221605) do
+ActiveRecord::Schema.define(version: 20161121174029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,29 @@ ActiveRecord::Schema.define(version: 20161120221605) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "deployments", force: :cascade do |t|
+    t.integer  "portfolio_id"
+    t.integer  "person_id"
+    t.integer  "department_id"
+    t.integer  "organisation_id"
+    t.string   "location"
+    t.string   "tech_layer"
+    t.text     "existing_solution"
+    t.text     "alternative_solution"
+    t.text     "cts_solution"
+    t.string   "benefit_type"
+    t.string   "state"
+    t.text     "comments"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "cts_initiative"
+  end
+
+  add_index "deployments", ["department_id"], name: "index_deployments_on_department_id", using: :btree
+  add_index "deployments", ["organisation_id"], name: "index_deployments_on_organisation_id", using: :btree
+  add_index "deployments", ["person_id"], name: "index_deployments_on_person_id", using: :btree
+  add_index "deployments", ["portfolio_id"], name: "index_deployments_on_portfolio_id", using: :btree
 
   create_table "organisations", force: :cascade do |t|
     t.string   "name"
@@ -55,6 +78,10 @@ ActiveRecord::Schema.define(version: 20161120221605) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "deployments", "departments"
+  add_foreign_key "deployments", "organisations"
+  add_foreign_key "deployments", "people"
+  add_foreign_key "deployments", "portfolios"
   add_foreign_key "organisations", "departments"
   add_foreign_key "portfolios", "people"
 end

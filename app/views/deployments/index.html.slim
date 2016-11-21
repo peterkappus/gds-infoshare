@@ -1,0 +1,71 @@
+.page-header
+  = link_to new_deployment_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Deployment
+  h1
+    | Listing deployments
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Portfolio
+        th
+          | Person
+        th
+          | Department
+        th
+          | Organisation
+        th
+          | Location
+        th
+          | Tech layer
+        th
+          | Existing solution
+        th
+          | Alternative solution
+        th
+          | Cts solution
+        th
+          | Benefit type
+        th
+          | State
+        th
+          | Comments
+        th
+        th
+        th
+    tbody
+      - @deployments.each do | deployment |
+        tr
+          td
+            = deployment.portfolio.name.to_s
+          td
+            = deployment.person.name.to_s
+          td
+            = deployment.department.name.to_s
+          td
+            = deployment.organisation.to_s
+          td
+            = deployment.location.to_s
+          td
+            = deployment.tech_layer.to_s
+          td
+            = deployment.existing_solution.to_s
+          td
+            = deployment.alternative_solution.to_s
+          td
+            = deployment.cts_solution.to_s
+          td
+            = deployment.benefit_type.to_s
+          td
+            = deployment.state.to_s
+          td
+            = deployment.comments.to_s
+          td
+            = link_to 'Show', deployment
+          td
+            = link_to 'Edit', edit_deployment_path(deployment) 
+          td
+            = link_to 'Destroy', deployment, method: :delete, data: { confirm: 'Are you sure?' } 
