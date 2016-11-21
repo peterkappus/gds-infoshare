@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
 
 
-  post '/import_data' => "info#import", as: :import_data
+  post '/import' => "info#import", as: :import
 
   #static pages
   get '/about' => 'info#about', as: :about

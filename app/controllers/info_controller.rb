@@ -5,7 +5,7 @@ class InfoController < ApplicationController
   def about
   end
 
-  def import_data
+  def import
     if(params[:file])
 =begin
       msg = Role.import(params[:file])
@@ -14,10 +14,10 @@ class InfoController < ApplicationController
       else
         redirect_to roles_path, flash: {:error=> msg}
       end
-    else
-      redirect_to roles_path, flash: {:error=> "Oops, no CVS file specified."}
-    end
 =end
+    else
+      redirect_to index_path, flash: {:error=> "Oops, no CVS file specified."}
+    end
   end
 
 

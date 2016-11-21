@@ -1,5 +1,5 @@
 .row
-  .col-md-12
+  .col-md-10
     h1.heading-xlarge Welcome
     -if signed_in?
       p.lead You are now signed in... Time to build the rest of your application to show special things to signed in people.
@@ -9,10 +9,9 @@
       = link_to "Sign in", "/auth/google_oauth2", :class=>"button button-start"
 
     -if is_admin?
-      = form_tag import_data_path, multipart: true, class: "form-inline" do
-        = link_to new_role_path, class: 'btn btn-primary' do
-          span.glyphicon.glyphicon-plus
-          |  New Role
-        .form-group
-          =file_field_tag :file, :class=>"form-control"
-        =submit_tag "Import", :class=>"btn btn-primary"
+.row style="margin-top: 20px"
+  .col-md-12
+    = form_tag import_path, multipart: true, class: "form-inline" do
+      .form-group
+        =file_field_tag :file, :class=>"form-control", :style=>"width: 200px; margin-right: 1rem"
+        =submit_tag "Import", :class=>"button-secondary"
