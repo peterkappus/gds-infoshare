@@ -16,6 +16,8 @@ h1 Departments
           td = link_to department, department
           td = department.description
           td = department.contracts.count
-          td £#{department.contracts.pluck(:value_cents).reduce(:+)/100/1000000}m
+          td 
+            - if (department.contracts.count > 0)
+              | £#{department.contracts.pluck(:value_cents).reduce(:+)/100/1000000}m
 
 = paginate @departments
