@@ -1,18 +1,27 @@
-.page-header
-  = link_to departments_path, class: 'btn btn-default' do 
-    span.glyphicon.glyphicon-list-alt
-    |  Back 
-  = link_to edit_department_path(@department), class: 'btn btn-primary' do 
-    span.glyphicon.glyphicon-pencil
-    |  Edit 
-  h1
-    | Show department
-dl.dl-horizontal
-  dt
-    | Name:
-  dd
-    = @department.name
-  dt
-    | Description:
-  dd
-    = @department.description
+h3 = link_to :Departments, departments_path
+h1 =@department.name
+p.lead =@department.description
+
+- if(params[:product] || params[:supplier_name])
+  .pull-right
+    = link_to "Show all", @department
+
+h2 #{@contracts.count} Contracts (£#{number_to_human @contracts.pluck(:value_cents).reduce(:+)/100})
+
+br.clear
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th Supplier
+        th Value
+        th Product(s)
+        th End date
+    tbody
+      - @contracts.order(value_cents: :desc).each do | contract |
+        tr
+          td = link_to contract.supplier_name, supplier_name: contract.supplier_name
+          td = money_without_cents_and_with_symbol contract.value
+          td = link_to contract.product, product: contract.product
+          td = contract.end_date.strftime("%d %h %Y") if contract.end_date

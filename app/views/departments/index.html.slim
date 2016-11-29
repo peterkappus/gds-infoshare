@@ -1,31 +1,21 @@
-.page-header
-  = link_to new_department_path, class: 'btn btn-primary' do 
-    span.glyphicon.glyphicon-plus
-    |  New Department
-  h1
-    | Listing departments
+h1 Departments
+
+= paginate @departments
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
-        th
-          | Name
-        th
-          | Description
-        th
-        th
-        th
+        th Name
+        th Description
+        th contracts
+        th contract value
     tbody
       - @departments.each do | department |
         tr
-          td
-            = department.name
-          td
-            = department.description
-          td
-            = link_to 'Show', department
-          td
-            = link_to 'Edit', edit_department_path(department) 
-          td
-            = link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } 
+          td = link_to department, department
+          td = department.description
+          td = department.contracts.count
+          td £#{department.contracts.pluck(:value_cents).reduce(:+)/100/1000000}m
+
+= paginate @departments

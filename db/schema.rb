@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128174305) do
+ActiveRecord::Schema.define(version: 20161128165156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20161128174305) do
     t.string   "source"
     t.integer  "department_id"
     t.string   "supplier_name"
-    t.string   "value"
     t.date     "end_date"
     t.integer  "organisation_id"
     t.string   "project"
@@ -30,7 +29,7 @@ ActiveRecord::Schema.define(version: 20161128174305) do
     t.date     "start_date"
     t.float    "years"
     t.string   "sector"
-    t.integer  "annual_value_cents"
+    t.integer  "annual_value_cents", limit: 8
     t.string   "category"
     t.string   "sub_contrators"
     t.text     "notes"

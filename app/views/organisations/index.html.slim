@@ -22,7 +22,7 @@
           td
             = organisation.name
           td
-            = link_to organisation.department.name, organisation.department
+            = link_to organisation.department.name, organisation.department if organisation.department
           td
             = link_to 'Show', organisation
           td

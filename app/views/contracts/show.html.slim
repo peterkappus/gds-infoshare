@@ -1,0 +1,86 @@
+.page-header
+  = link_to contracts_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_contract_path(@contract), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show contract
+dl.dl-horizontal
+  dt
+    | Reference:
+  dd
+    = @contract.reference
+  dt
+    | Source:
+  dd
+    = @contract.source
+  dt
+    | Department:
+  dd
+    = @contract.department
+  dt
+    | Supplier name:
+  dd
+    = @contract.supplier_name
+  dt
+    | Value:
+  dd
+    = @contract.value
+  dt
+    | End date:
+  dd
+    = @contract.end_date
+  dt
+    | Organisation:
+  dd
+    = @contract.organisation
+  dt
+    | Project:
+  dd
+    = @contract.project
+  dt
+    | Product:
+  dd
+    = @contract.product
+  dt
+    | Value cents:
+  dd
+    = @contract.value_cents
+  dt
+    | Start date:
+  dd
+    = @contract.start_date
+  dt
+    | Years:
+  dd
+    = @contract.years
+  dt
+    | Sector:
+  dd
+    = @contract.sector
+  dt
+    | Annual value cents:
+  dd
+    = @contract.annual_value_cents
+  dt
+    | Category:
+  dd
+    = @contract.category
+  dt
+    | Sub contrators:
+  dd
+    = @contract.sub_contrators
+  dt
+    | Notes:
+  dd
+    = @contract.notes
+  dt
+    | Status:
+  dd
+    = @contract.status
+  dt
+    | Year awarded:
+  dd
+    = @contract.year_awarded

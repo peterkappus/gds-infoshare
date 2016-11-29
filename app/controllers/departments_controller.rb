@@ -4,12 +4,15 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
-    @departments = Department.all
+    @departments = Department.all.page params[:page]
   end
 
   # GET /departments/1
   # GET /departments/1.json
   def show
+    @contracts = @department.contracts
+    @contracts = @contracts.where(product: params[:product]) if params[:product]
+    @contracts = @contracts.where(supplier_name: params[:supplier_name]) if params[:supplier_name]
   end
 
   # GET /departments/new

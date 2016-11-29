@@ -1,0 +1,105 @@
+.page-header
+  = link_to new_contract_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Contract
+  h1
+    | Listing contracts
+    
+== render 'import'
+
+= paginate @contracts
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Reference
+        th
+          | Source
+        th
+          | Department
+        th
+          | Supplier name
+        th
+          | Value
+        th
+          | End date
+        th
+          | Organisation
+        th
+          | Project
+        th
+          | Product
+        th
+          | Value cents
+        th
+          | Start date
+        th
+          | Years
+        th
+          | Sector
+        th
+          | Annual value cents
+        th
+          | Category
+        th
+          | Sub contrators
+        th
+          | Notes
+        th
+          | Status
+        th
+          | Year awarded
+        th
+        th
+        th
+    tbody
+      - @contracts.each do | contract |
+        tr
+          td
+            = contract.reference
+          td
+            = contract.source
+          td
+            = contract.department
+          td
+            = contract.supplier_name
+          td
+            = contract.value
+          td
+            = contract.end_date
+          td
+            = contract.organisation
+          td
+            = contract.project
+          td
+            = contract.product
+          td
+            = contract.value_cents
+          td
+            = contract.start_date
+          td
+            = contract.years
+          td
+            = contract.sector
+          td
+            = contract.annual_value_cents
+          td
+            = contract.category
+          td
+            = contract.sub_contrators
+          td
+            = contract.notes
+          td
+            = contract.status
+          td
+            = contract.year_awarded
+          td
+            = link_to 'Show', contract
+          td
+            = link_to 'Edit', edit_contract_path(contract) 
+          td
+            = link_to 'Destroy', contract, method: :delete, data: { confirm: 'Are you sure?' } 
+
+= paginate @contracts

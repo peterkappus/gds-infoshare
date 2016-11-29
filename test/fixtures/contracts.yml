@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reference: MyString
+  source: MyString
+  department_id: 
+  supplier_name: MyString
+  value: MyString
+  end_date: 2016-11-28
+  organisation_id: 
+  project: MyString
+  product: MyString
+  value_cents: 1
+  start_date: 2016-11-28
+  years: 1.5
+  sector: MyString
+  annual_value_cents: 1
+  category: MyString
+  sub_contrators: MyString
+  notes: MyText
+  status: MyString
+  year_awarded: 1
+
+two:
+  reference: MyString
+  source: MyString
+  department_id: 
+  supplier_name: MyString
+  value: MyString
+  end_date: 2016-11-28
+  organisation_id: 
+  project: MyString
+  product: MyString
+  value_cents: 1
+  start_date: 2016-11-28
+  years: 1.5
+  sector: MyString
+  annual_value_cents: 1
+  category: MyString
+  sub_contrators: MyString
+  notes: MyText
+  status: MyString
+  year_awarded: 1

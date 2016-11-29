@@ -1,0 +1,91 @@
+= form_for(@contract, html: { class: "form-horizontal", role: "form" }) do |f|
+  - if @contract.errors.any?
+    .alert.alert-danger.alert-dismissable role="alert"
+      button.close type="button" data-dismiss="alert"
+        span aria-hidden="true"
+          | &times;
+        span.sr-only
+          | Close
+      h4= "#{pluralize(@contract.errors.count,"error")} prohibited this contract from being saved:"
+      ul
+        - @contract.errors.full_messages.each do |msg|
+          li= msg
+  .form-group
+    = f.label :reference, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :reference, class: "form-control"
+  .form-group
+    = f.label :source, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :source, class: "form-control"
+  .form-group
+    = f.label :department, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :department, class: "form-control"
+  .form-group
+    = f.label :supplier_name, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :supplier_name, class: "form-control"
+  .form-group
+    = f.label :value, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :value, class: "form-control"
+  .form-group
+    = f.label :end_date, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.date_select :end_date, class: "form-control"
+  .form-group
+    = f.label :organisation, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :organisation, class: "form-control"
+  .form-group
+    = f.label :project, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :project, class: "form-control"
+  .form-group
+    = f.label :product, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :product, class: "form-control"
+  .form-group
+    = f.label :value_cents, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.number_field :value_cents, class: "form-control"
+  .form-group
+    = f.label :start_date, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.date_select :start_date, class: "form-control"
+  .form-group
+    = f.label :years, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :years, class: "form-control"
+  .form-group
+    = f.label :sector, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :sector, class: "form-control"
+  .form-group
+    = f.label :annual_value_cents, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.number_field :annual_value_cents, class: "form-control"
+  .form-group
+    = f.label :category, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :category, class: "form-control"
+  .form-group
+    = f.label :sub_contrators, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :sub_contrators, class: "form-control"
+  .form-group
+    = f.label :notes, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :notes, class: "form-control"
+  .form-group
+    = f.label :status, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :status, class: "form-control"
+  .form-group
+    = f.label :year_awarded, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.number_field :year_awarded, class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-primary"
