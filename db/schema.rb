@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121174029) do
+ActiveRecord::Schema.define(version: 20161128174305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contracts", force: :cascade do |t|
+    t.string   "reference"
+    t.string   "source"
+    t.integer  "department_id"
+    t.string   "supplier_name"
+    t.string   "value"
+    t.date     "end_date"
+    t.integer  "organisation_id"
+    t.string   "project"
+    t.string   "product"
+    t.integer  "value_cents",        limit: 8
+    t.date     "start_date"
+    t.float    "years"
+    t.string   "sector"
+    t.integer  "annual_value_cents"
+    t.string   "category"
+    t.string   "sub_contrators"
+    t.text     "notes"
+    t.string   "status"
+    t.integer  "year_awarded"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "contracts", ["department_id"], name: "index_contracts_on_department_id", using: :btree
+  add_index "contracts", ["organisation_id"], name: "index_contracts_on_organisation_id", using: :btree
 
   create_table "departments", force: :cascade do |t|
     t.string   "name"
@@ -78,6 +105,8 @@ ActiveRecord::Schema.define(version: 20161121174029) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "contracts", "departments"
+  add_foreign_key "contracts", "organisations"
   add_foreign_key "deployments", "departments"
   add_foreign_key "deployments", "organisations"
   add_foreign_key "deployments", "people"

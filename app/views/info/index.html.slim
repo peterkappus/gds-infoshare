@@ -7,11 +7,5 @@
     -else
       p.lead Please log in below.
       = link_to "Sign in", "/auth/google_oauth2", :class=>"button button-start"
-
-    -if is_admin?
-.row style="margin-top: 20px"
-  .col-md-12
-    = form_tag import_path, multipart: true, class: "form-inline" do
-      .form-group
-        =file_field_tag :file, :class=>"form-control", :style=>"width: 200px; margin-right: 1rem"
-        =submit_tag "Import", :class=>"button-secondary"
+    
+    /=render 'deployments/import'

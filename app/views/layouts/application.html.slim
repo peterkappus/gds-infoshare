@@ -28,6 +28,7 @@
         ul#proposition-links
           li =link_to "About", about_path
           - if (signed_in?)
+            li = link_to :Contracts, contracts_path
             li = link_to :Portfolios, portfolios_path
             li = link_to :Departments, departments_path
             li = link_to :Organisations, organisations_path

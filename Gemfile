@@ -11,6 +11,10 @@ gem "omniauth-google-oauth2"
 gem 'puma'
 gem "slim-rails"
 
+#money!
+gem "money-rails"
+
+
 #for GOV.UK template
 gem 'govuk_template'
 #gem 'slimmer'

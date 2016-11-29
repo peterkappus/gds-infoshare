@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  resources :deployments
+  resources :contracts do
+    collection do
+      post 'import'
+    end
+  end
+  resources :deployments do
+    collection do
+      post 'import'
+    end
+  end
   resources :portfolios
   resources :people
   resources :organisations
@@ -8,7 +17,6 @@ Rails.application.routes.draw do
 
 
 
-  post '/import' => "deployments#import", as: :import
 
   #static pages
   get '/about' => 'info#about', as: :about
