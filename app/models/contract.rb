@@ -5,6 +5,10 @@ class Contract < ActiveRecord::Base
   monetize :value_cents, :allow_nil => true
   monetize :annual_value_cents, :allow_nil => true
 
+  def self.search(words)
+    where("lower(notes) LIKE ?","%#{words.downcase}%")
+  end
+
   def self.import(file)
     require 'csv' #probably should put this at the top, but I don't *always* want to include it... Some smarter way to bundle this up?
 

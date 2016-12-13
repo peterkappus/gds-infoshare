@@ -16,6 +16,24 @@ namespace :infoshare do
       end
     end
 
+    task departments: [:environment] do
+      Department.destroy_all
+      #departments
+      [*(10..20)].sample.times do
+        #won't create duplicates... but means you might not get the full number
+        Department.find_or_create_by!(name: ["Ministry of", "Department for","Office of"].sample + " " + ["Getting Down", "Aquarian Studies", "Apples", "Rock & Roll", "Abstract Art", "Fine Dining", "Hedgehogs", "Wizardry", "Parkour", "Sound", "Ice Cream", "Funny Walks", "Beanie Hats"].sample)
+      end
+    end
+
+    task clean: [:environment] do
+      Organisation.destroy_all
+      Contract.destroy_all
+      Department.destroy_all
+      Portfolio.destroy_all
+      Person.destroy_all
+      #Don't destroy users...
+    end
+
     task warn: [] do
       puts "WARNING: This may erase/overwrite existing data. Press enter to continue."
       STDIN.gets

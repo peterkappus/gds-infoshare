@@ -9,6 +9,10 @@ class Department < ActiveRecord::Base
     name
   end
 
+  def self.search(words)
+    where("lower(name) LIKE ?","%#{words.downcase}%")
+  end
+
   def update_total_value
     total_value = contracts.pluck(:value_cents).reduce(:+)/100
     puts total_value

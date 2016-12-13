@@ -2,6 +2,9 @@
 A simple tool to share information.
 
 
+#TODO: copy over steps from [panoflex](http://github.com/peterkappus/panoflex).
+
+## Schema
 
 Department
 - name
@@ -17,20 +20,28 @@ Contract
 - belongs_to: department
 - belongs_to: supplier
 
-Initiative
+Engagement
+- phase
 - name
 - dates
 - description
 - has_many: deployments
 - belongs_to: department
+- has_many: benefits
+
+Benefit
+- name
+- value_cents
+- notes
+- cashable (boolean)
 - has_many: contracts
 
-deployments
+Deployment
 - cost
 - progress (0-1)
 - has_many: updates
 - has_many: products
-- belongs_to: initiative
+- belongs_to: engagement
 
 update
 - date
