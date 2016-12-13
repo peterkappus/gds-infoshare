@@ -42,8 +42,9 @@ class Contract < ActiveRecord::Base
 
         end
 
-        #strip pound signs and commas from monthly costs
+        #strip pound signs and commas from money columns
         record.value = Monetize.parse(row['value'])
+        record.annual_value = Monetize.parse(row['annual_value'])
 
         #find or create by short name...
         #TODO: DRY this up...
