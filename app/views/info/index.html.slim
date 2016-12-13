@@ -1,11 +1,10 @@
 .row
   .col-md-10
-    h1.heading-xlarge Welcome
+    h1.heading-xlarge CTS Management Information
     -if signed_in?
-      p.lead You are now signed in... Time to build the rest of your application to show special things to signed in people.
-      = link_to "Sign out", signout_path, :class=>"button danger"
+      p.lead Please use the links above to browse information.
     -else
-      p.lead Please log in below.
+      p.lead Please sign in below to use this service.
       = link_to "Sign in", "/auth/google_oauth2", :class=>"button button-start"
     
     /=render 'deployments/import'

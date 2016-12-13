@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   #export our helper method
   helper_method :signed_in?, :current_user, :is_admin?
 
-  before_filter :check_login, :except=>:about
+  before_filter :check_login#, :except=>:about
 
   #admin methods
   def is_admin?
