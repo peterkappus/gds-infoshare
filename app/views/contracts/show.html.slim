@@ -27,7 +27,7 @@ dl.dl-horizontal
   dt
     | Value:
   dd
-    = @contract.value
+    = money_without_cents_and_with_symbol @contract.value
   dt
     | End date:
   dd
@@ -45,10 +45,6 @@ dl.dl-horizontal
   dd
     = @contract.product
   dt
-    | Value cents:
-  dd
-    = @contract.value_cents
-  dt
     | Start date:
   dd
     = @contract.start_date
@@ -61,9 +57,9 @@ dl.dl-horizontal
   dd
     = @contract.sector
   dt
-    | Annual value cents:
+    | Annual value:
   dd
-    = @contract.annual_value_cents
+    = money_without_cents_and_with_symbol @contract.annual_value
   dt
     | Category:
   dd

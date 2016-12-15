@@ -1,0 +1,46 @@
+.page-header
+  = link_to benefits_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_benefit_path(@benefit), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show benefit
+dl.dl-horizontal
+  dt
+    | Department:
+  dd
+    = @benefit.department
+  dt
+    | Organisation:
+  dd
+    = @benefit.organisation
+  dt
+    | Product:
+  dd
+    = @benefit.product
+  dt
+    | Location:
+  dd
+    = @benefit.location
+  dt
+    | Original offering:
+  dd
+    = @benefit.original_offering
+  dt
+    | Non cts alternative:
+  dd
+    = @benefit.non_cts_alternative
+  dt
+    | Cts proposal:
+  dd
+    = @benefit.cts_proposal
+  dt
+    | Type:
+  dd
+    = @benefit.type
+  dt
+    | State:
+  dd
+    = @benefit.state

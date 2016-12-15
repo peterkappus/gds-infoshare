@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :benefits
+  resources :products
   resources :contracts do
     collection do
       post 'import'

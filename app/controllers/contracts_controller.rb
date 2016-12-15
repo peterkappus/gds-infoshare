@@ -18,7 +18,13 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.all.page params[:page]
+    @contracts = Contract.all
+    @contracts = @contracts.where(product: params[:product]) if params[:product]
+    @contracts = Organisation.find_by(name: params[:organisation_name]).contracts if params[:organisation_name]
+    @contracts = @contracts.where(supplier_name: params[:supplier_name]) if params[:supplier_name]
+    @contracts = @contracts.where(product: params[:product]) if params[:product]
+    @total_count = @contracts.count
+    @contracts = @contracts.page params[:page]
   end
 
   # GET /contracts/1

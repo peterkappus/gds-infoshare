@@ -2,8 +2,10 @@
   = link_to new_contract_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
     |  New Contract
-  h1
-    | Listing contracts
+  h1 Listing contracts (#{@contracts.total_count})
+  - %w/product supplier_name organisation_name/.each do |param|
+    - if(params[param])
+      h2 Filtered where #{param}: #{params[param]}
     
 == render 'import'
 
@@ -16,9 +18,9 @@
         th
           | Reference
         th
-          | Source
-        th
           | Department
+        th
+          | Organisation
         th
           | Supplier name
         th
@@ -26,80 +28,20 @@
         th
           | End date
         th
-          | Organisation
-        th
-          | Project
-        th
-          | Product
-        th
-          | Value cents
-        th
-          | Start date
-        th
-          | Years
-        th
-          | Sector
-        th
-          | Annual value cents
-        th
-          | Category
-        th
-          | Sub contrators
-        th
-          | Notes
-        th
-          | Status
-        th
-          | Year awarded
-        th
-        th
-        th
+          | Products
     tbody
       - @contracts.each do | contract |
         tr
           td
-            = contract.reference
+            = link_to contract.reference, contract
           td
-            = contract.source
+            = link_to contract.department.name, contract.department if(contract.department)
+          td = link_to contract.organisation.name, organisation_name: contract.organisation.name if contract.organisation
+          td = link_to contract.supplier_name, supplier_name: contract.supplier_name
           td
-            = contract.department
+            = money_without_cents_and_with_symbol contract.value
           td
-            = contract.supplier_name
-          td
-            = contract.value
-          td
-            = contract.end_date
-          td
-            = contract.organisation
-          td
-            = contract.project
-          td
-            = contract.product
-          td
-            = contract.value_cents
-          td
-            = contract.start_date
-          td
-            = contract.years
-          td
-            = contract.sector
-          td
-            = contract.annual_value_cents
-          td
-            = contract.category
-          td
-            = contract.sub_contrators
-          td
-            = contract.notes
-          td
-            = contract.status
-          td
-            = contract.year_awarded
-          td
-            = link_to 'Show', contract
-          td
-            = link_to 'Edit', edit_contract_path(contract) 
-          td
-            = link_to 'Destroy', contract, method: :delete, data: { confirm: 'Are you sure?' } 
+            = contract.end_date.strftime("%d %mm %Y") if contract.end_date
+          td = link_to contract.product, product: contract.product if contract.product
 
 = paginate @contracts

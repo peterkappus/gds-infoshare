@@ -61,5 +61,4 @@ class Contract < ActiveRecord::Base
     #Group.all.map{|g| g.destroy if(g.roles.count <= 0)}
   end
 
-
 end

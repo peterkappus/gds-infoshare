@@ -1,0 +1,1 @@
+ssh -i ~/.ssh/id_rsa ubuntu@ec2-52-16-218-53.eu-west-1.compute.amazonaws.com

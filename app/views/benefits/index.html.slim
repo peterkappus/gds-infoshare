@@ -1,0 +1,59 @@
+.page-header
+  = link_to new_benefit_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Benefit
+  h1
+    | Listing benefits
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Department
+        th
+          | Organisation
+        th
+          | Product
+        th
+          | Location
+        th
+          | Original offering
+        th
+          | Non cts alternative
+        th
+          | Cts proposal
+        th
+          | Type
+        th
+          | State
+        th
+        th
+        th
+    tbody
+      - @benefits.each do | benefit |
+        tr
+          td
+            = benefit.department
+          td
+            = benefit.organisation
+          td
+            = benefit.product
+          td
+            = benefit.location
+          td
+            = benefit.original_offering
+          td
+            = benefit.non_cts_alternative
+          td
+            = benefit.cts_proposal
+          td
+            = benefit.type
+          td
+            = benefit.state
+          td
+            = link_to 'Show', benefit
+          td
+            = link_to 'Edit', edit_benefit_path(benefit) 
+          td
+            = link_to 'Destroy', benefit, method: :delete, data: { confirm: 'Are you sure?' } 
