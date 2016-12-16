@@ -1,0 +1,1 @@
+json.array! @benefit_years, partial: 'benefit_years/benefit_year', as: :benefit_year

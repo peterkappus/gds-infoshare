@@ -2,10 +2,16 @@
   = link_to new_contract_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
     |  New Contract
-  h1 Listing contracts (#{@contracts.total_count})
+  h1 Listing contracts 
+  h3 #{@contracts.total_count} contracts worth £#{human_value_of_contract_set(@contracts)}
   - %w/product supplier_name organisation_name/.each do |param|
     - if(params[param])
-      h2 Filtered where #{param}: #{params[param]}
+      h2 Filtered: #{param.humanize}: #{params[param]}
+      =link_to "Show all",page: params[:page]
+  - if(params[:end_date_before])
+    h2 Filtered where end date is before 1 Apr #{Date.parse(params[:end_date_before]).year+1}
+    =link_to "Show all",page: params[:page]
+  
     
 == render 'shared/import', locals: {path:import_contracts_path}
 

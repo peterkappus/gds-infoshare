@@ -1,0 +1,22 @@
+.page-header
+  = link_to benefit_years_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_benefit_year_path(@benefit_year), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show benefit_year
+dl.dl-horizontal
+  dt
+    | Fy end date:
+  dd
+    = @benefit_year.fy_end_date
+  dt
+    | Target amount:
+  dd
+    = @benefit_year.target_amount
+  dt
+    | Benefit:
+  dd
+    = @benefit_year.benefit

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fy_end_date: 2016-12-16
+  target_amount: 1
+  benefit_id: 
+
+two:
+  fy_end_date: 2016-12-16
+  target_amount: 1
+  benefit_id: 

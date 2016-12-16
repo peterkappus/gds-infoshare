@@ -1,0 +1,27 @@
+= form_for(@benefit_year, html: { class: "form-horizontal", role: "form" }) do |f|
+  - if @benefit_year.errors.any?
+    .alert.alert-danger.alert-dismissable role="alert"
+      button.close type="button" data-dismiss="alert"
+        span aria-hidden="true"
+          | &times;
+        span.sr-only
+          | Close
+      h4= "#{pluralize(@benefit_year.errors.count,"error")} prohibited this benefit_year from being saved:"
+      ul
+        - @benefit_year.errors.full_messages.each do |msg|
+          li= msg
+  .form-group
+    = f.label :fy_end_date, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.date_select :fy_end_date, class: "form-control"
+  .form-group
+    = f.label :target_amount, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.number_field :target_amount, class: "form-control"
+  .form-group
+    = f.label :benefit, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :benefit, class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-primary"

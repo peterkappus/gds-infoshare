@@ -1,0 +1,35 @@
+.page-header
+  = link_to new_benefit_year_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Benefit year
+  h1
+    | Listing benefit_years
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Fy end date
+        th
+          | Target amount
+        th
+          | Benefit
+        th
+        th
+        th
+    tbody
+      - @benefit_years.each do | benefit_year |
+        tr
+          td
+            = benefit_year.fy_end_date
+          td
+            = benefit_year.target_amount
+          td
+            = benefit_year.benefit
+          td
+            = link_to 'Show', benefit_year
+          td
+            = link_to 'Edit', edit_benefit_year_path(benefit_year) 
+          td
+            = link_to 'Destroy', benefit_year, method: :delete, data: { confirm: 'Are you sure?' } 
