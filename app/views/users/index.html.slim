@@ -1,6 +1,11 @@
 .column-two-thrids
   h1 Listing users
 
+.column-one-thrids
+  .pull-right
+    =link_to "Create New",new_user_path, class: "button"
+.clear
+  
 = paginate @users
 
 .table-responsive

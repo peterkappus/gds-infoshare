@@ -25,3 +25,7 @@
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: "btn btn-primary"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      br
+      = link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

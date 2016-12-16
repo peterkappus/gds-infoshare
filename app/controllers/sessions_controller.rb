@@ -25,9 +25,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if(env["omniauth.auth"].info['email'].match(/digital.cabinet-office\.gov\.uk$/))
-      user = User.find_or_create_by(:email=>env["omniauth.auth"].info['email'])
-      user.name = env["omniauth.auth"].info['name']
+    email = env["omniauth.auth"].info['email']
+    #if(env["omniauth.auth"].info['email'].match(/digital.cabinet-office\.gov\.uk$/))
+      #Admin MUST create the user... so we just do a lookup
+      #user = User.find_or_create_by(:email=>env["omniauth.auth"].info['email'])
+      #user.name = env["omniauth.auth"].info['name']
+    if(user = User.find_by(email: email))
       #!!!Make the very first user into an admin AND EVERY user in the sandbox environment
       #if this is the first user, or we're in a sandbox environment.
       if User.all.empty? || env["IS_SANDBOX"]
@@ -38,7 +41,7 @@ class SessionsController < ApplicationController
       session['user_email'] = user.email
       flash['notice'] = "Successfully signed in as " + user.name
     else
-      flash['error'] = "Sorry, you must have a GDS or Cabinet Office email address to login."
+      flash['error'] = "Sorry, could not find an account for the email #{email}."
     end
     #byebug
     redirect_to_previous_url
