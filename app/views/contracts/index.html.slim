@@ -45,9 +45,10 @@
           td = link_to contract.organisation.name, organisation_name: contract.organisation.name if contract.organisation
           td = link_to contract.supplier_name, supplier_name: contract.supplier_name
           td
-            = money_without_cents_and_with_symbol contract.value
+            /= "£" + number_to_human(contract.value, units: {thousand: "k", million: "m", billion: "bn"}).to_s
+            =  money_without_cents_and_with_symbol contract.value
           td
-            = link_to contract.end_date.strftime("%d %mm %Y"), end_date_before:contract.end_date if contract.end_date
+            = link_to contract.end_date.strftime("%d %h %Y"), end_date_before:contract.end_date if contract.end_date
           td = link_to contract.product, product: contract.product if contract.product
 
 = paginate @contracts
