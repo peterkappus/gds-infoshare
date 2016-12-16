@@ -5,6 +5,10 @@
   h1
     | Listing benefits
 
+
+= paginate @benefits
+
+
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
     thead
@@ -57,3 +61,7 @@
             = link_to 'Edit', edit_benefit_path(benefit) 
           td
             = link_to 'Destroy', benefit, method: :delete, data: { confirm: 'Are you sure?' } 
+
+= paginate @benefits
+
+== render 'shared/import', locals: {path:import_contracts_path}

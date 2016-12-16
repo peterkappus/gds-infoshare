@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :benefit_years
   resources :benefits
   resources :products
   resources :contracts do

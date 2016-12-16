@@ -7,7 +7,7 @@
     - if(params[param])
       h2 Filtered where #{param}: #{params[param]}
     
-== render 'import'
+== render 'shared/import', locals: {path:import_contracts_path}
 
 = paginate @contracts
 
@@ -41,7 +41,7 @@
           td
             = money_without_cents_and_with_symbol contract.value
           td
-            = contract.end_date.strftime("%d %mm %Y") if contract.end_date
+            = link_to contract.end_date.strftime("%d %mm %Y"), end_date_before:contract.end_date if contract.end_date
           td = link_to contract.product, product: contract.product if contract.product
 
 = paginate @contracts

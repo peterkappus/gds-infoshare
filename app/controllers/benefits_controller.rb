@@ -4,7 +4,7 @@ class BenefitsController < ApplicationController
   # GET /benefits
   # GET /benefits.json
   def index
-    @benefits = Benefit.all
+    @benefits = Benefit.all.page param[:page]
   end
 
   # GET /benefits/1

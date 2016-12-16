@@ -23,6 +23,7 @@ class ContractsController < ApplicationController
     @contracts = Organisation.find_by(name: params[:organisation_name]).contracts if params[:organisation_name]
     @contracts = @contracts.where(supplier_name: params[:supplier_name]) if params[:supplier_name]
     @contracts = @contracts.where(product: params[:product]) if params[:product]
+    @contracts = @contracts.where("end_date < ?", Date.new(Date.parse(params[:end_date_before]).year+1,04,01)) if params[:end_date_before]
     @total_count = @contracts.count
     @contracts = @contracts.page params[:page]
   end

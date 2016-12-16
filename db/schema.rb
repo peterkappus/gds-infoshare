@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214184908) do
+ActiveRecord::Schema.define(version: 20161216122215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "benefit_years", force: :cascade do |t|
+    t.date     "fy_end_date"
+    t.integer  "target_amount"
+    t.integer  "benefit_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "benefit_years", ["benefit_id"], name: "index_benefit_years_on_benefit_id", using: :btree
 
   create_table "benefits", force: :cascade do |t|
     t.integer  "department_id"
@@ -130,6 +140,7 @@ ActiveRecord::Schema.define(version: 20161214184908) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "benefit_years", "benefits"
   add_foreign_key "benefits", "departments"
   add_foreign_key "benefits", "organisations"
   add_foreign_key "benefits", "products"
