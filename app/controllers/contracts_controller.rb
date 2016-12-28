@@ -18,7 +18,7 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.filter(params.slice(:expired, :supplier_name, :organisation_name, :end_date_before, :product))
+    @contracts = Contract.filter(params.slice(:is_expired, :supplier_name, :organisation_name, :end_date_before, :product))
 
     @total_count = @contracts.count
     @expired = @contracts.expired

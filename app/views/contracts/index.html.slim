@@ -13,7 +13,7 @@ p.lead These are the contracts known to CTS. They are obtained via Kable, The Co
   ==big_number @contracts.total_count, "Contracts"
   ==big_number show_big_money(@total_value), "Total Value"
   ==big_number @supplier_count, "Unique Suppliers"
-  ==big_number @expired.count, "Expired Contracts #{link_to("(View)",contracts_path(expired: true))}"
+  ==big_number @expired.count, "Expired Contracts #{link_to("(View)",contracts_path(is_expired: true))}"
   
 = paginate @contracts
 

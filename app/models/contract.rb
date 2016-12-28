@@ -6,7 +6,9 @@ class Contract < ActiveRecord::Base
   monetize :value_cents, :allow_nil => true
   monetize :annual_value_cents, :allow_nil => true
 
-  scope :expired, -> { where("end_date < ?", Time.now)}
+  #have to accept a parameter because our Filterable concern passes one to each filter scope...slightly hacky, c'est la vie
+  scope :is_expired, ->(bool) { where("end_date < ?", Time.now)}
+  scope :expired, -> {is_expired(true)}
   scope :supplier_name, ->(name) { where supplier_name: name}
   scope :organisation_name, ->(name) { where organisation_name: name}
   scope :end_date_before, -> (end_date_before) {where "end_date < ?", Date.new(Date.parse(end_date_before).year+1,04,01)}
