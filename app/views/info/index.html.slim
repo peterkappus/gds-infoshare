@@ -1,11 +1,17 @@
-.row
-  .col-md-10
     h1.heading-xlarge CTS Benefits Dashboard
-    -if signed_in?
-      p.lead Please use the links above to browse information.
-    -else
+    -if !signed_in?
       h2 NOTE: Please speak to Peter Kappus to request an account.
       p.lead If you already have an account, please sign in below.
       = link_to "Sign in", "/auth/google_oauth2", :class=>"button button-start"
-    
-    /=render 'deployments/import'
+    -else
+    p.lead Use this tool to look at expiring contracts, departments involved, products that CTS is building as well as delivery progress and benefits delivered.
+    .grid-row
+      .column-third
+        h2 =link_to "#{Contract.all.count} Contracts", contracts_path
+        p View and filter expiring contracts currently known to CTS.
+      .column-third
+        h2 =link_to "#{Department.all.count} Departments", departments_path
+        p View contract information by department.
+      .column-third
+        h2 =link_to "#{Product.all.count} Products", products_path
+        p View products that CTS is building and see  progress and benefits being deliverd.

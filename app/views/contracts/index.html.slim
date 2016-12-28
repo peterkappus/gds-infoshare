@@ -1,21 +1,15 @@
-.page-header
-  = link_to new_contract_path, class: 'btn btn-primary' do 
-    span.glyphicon.glyphicon-plus
-    |  New Contract
-  h1 Listing contracts 
-  h3 #{@contracts.total_count} contracts worth #{show_big_money(@total_value)}
-  h4 Including #{@expired.count} expired contracts #{link_to "(View)",contracts_path(expired: true)}
-  - %w/product supplier_name organisation_name/.each do |param|
-    - if(params[param])
-      h2 Filtered: #{param.humanize}: #{params[param]}
-      =link_to "Show all",page: params[:page]
-  - if(params[:end_date_before])
-    h2 Filtered where end date is before 1 Apr #{Date.parse(params[:end_date_before]).year+1}
+h3 =link_to :Home, root_path
+h1 Contracts 
+h3 #{@contracts.total_count} contracts worth #{show_big_money(@total_value)}
+h4 Including #{@expired.count} expired contracts #{link_to "(View)",contracts_path(expired: true)}
+- %w/product supplier_name organisation_name/.each do |param|
+  - if(params[param])
+    h2 Filtered: #{param.humanize}: #{params[param]}
     =link_to "Show all",page: params[:page]
+- if(params[:end_date_before])
+  h2 Filtered where end date is before 1 Apr #{Date.parse(params[:end_date_before]).year+1}
+  =link_to "Show all",page: params[:page]
   
-    
-== render partial: 'shared/import', locals: {path:import_contracts_path}
-
 = paginate @contracts
 
 .table-responsive
@@ -53,3 +47,9 @@
           td = link_to contract.product, product: contract.product if contract.product
 
 = paginate @contracts
+
+-if is_admin?
+  = link_to "Create New Contract", new_contract_path, class: 'button'
+
+  h2 Import Contract Data
+  == render partial: 'shared/import', locals: {path:import_contracts_path}

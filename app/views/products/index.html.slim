@@ -4,7 +4,4 @@ p.lead CTS is actively developing the following products. Click to learn more ab
   h2 =link_to product.name, product
   
 - if is_admin?
-  = link_to new_product_path, class: 'button btn-primary' do 
-    span.glyphicon.glyphicon-plus
-    |  Create Product
-    
+  = link_to "Create New Product", new_product_path, class: 'button btn-primary'
