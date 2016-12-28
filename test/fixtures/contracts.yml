@@ -16,7 +16,7 @@ one:
   sector: MyString
   annual_value_cents: 1
   category: MyString
-  sub_contrators: MyString
+  sub_contractors: MyString
   notes: MyText
   status: MyString
   year_awarded: 1
@@ -37,7 +37,7 @@ two:
   sector: MyString
   annual_value_cents: 1
   category: MyString
-  sub_contrators: MyString
+  sub_contractors: MyString
   notes: MyText
   status: MyString
   year_awarded: 1

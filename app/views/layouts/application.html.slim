@@ -25,7 +25,7 @@
       a href='#proposition-links' class='js-header-toggle menu' Menu
       nav#proposition-menu
         =link_to "CTS Benefits", root_path, :id=>"proposition-name"
-        - if (signed_in?)
+        - if signed_in?
           ul#proposition-links
             li =link_to "About", about_path
             li = link_to :Contracts, contracts_path

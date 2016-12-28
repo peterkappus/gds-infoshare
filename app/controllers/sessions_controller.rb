@@ -5,13 +5,14 @@ class SessionsController < ApplicationController
   def new
     #first sign out....
     session['user_email'] = "" #assigning to nil didn't work...
-    #Allow us to login to the test & dev environments simply by passing an email.
+    # !!!HEADS UP!!!
+    # Allow us to login to the test & dev environments simply by passing an email.
     if ((Rails.env.test? || Rails.env.development?) && params['email'].present?)
       if(user = User.find_by_email(params['email']))
         session['user_email'] = user.email
         flash['notice'] = "Successfully signed in as " + user.name.to_s
       else
-        flash['error'] = "Could not find test user with email " + params['email'].to_s
+        flash['error'] = "Sorry, could not find an account with the email " + params['email'].to_s + " please speak with an administrator to request an account."
       end
       #redirect to "/" unless we have a previous url
       redirect_to_previous_url

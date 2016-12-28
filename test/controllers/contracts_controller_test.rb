@@ -18,7 +18,7 @@ class ContractsControllerTest < ActionController::TestCase
 
   test "should create contract" do
     assert_difference('Contract.count') do
-      post :create, contract: { annual_value_cents: @contract.annual_value_cents, category: @contract.category, department_id: @contract.department_id, end_date: @contract.end_date, notes: @contract.notes, organisation_id: @contract.organisation_id, product: @contract.product, project: @contract.project, reference: @contract.reference, sector: @contract.sector, source: @contract.source, start_date: @contract.start_date, status: @contract.status, sub_contrators: @contract.sub_contrators, supplier_name: @contract.supplier_name, value: @contract.value, value_cents: @contract.value_cents, year_awarded: @contract.year_awarded, years: @contract.years }
+      post :create, contract: { annual_value_cents: @contract.annual_value_cents, category: @contract.category, department_id: @contract.department_id, end_date: @contract.end_date, notes: @contract.notes, organisation_id: @contract.organisation_id, product: @contract.product, project: @contract.project, reference: @contract.reference, sector: @contract.sector, source: @contract.source, start_date: @contract.start_date, status: @contract.status, sub_contractors: @contract.sub_contractors, supplier_name: @contract.supplier_name, value: @contract.value, value_cents: @contract.value_cents, year_awarded: @contract.year_awarded, years: @contract.years }
     end
 
     assert_redirected_to contract_path(assigns(:contract))
@@ -35,7 +35,7 @@ class ContractsControllerTest < ActionController::TestCase
   end
 
   test "should update contract" do
-    patch :update, id: @contract, contract: { annual_value_cents: @contract.annual_value_cents, category: @contract.category, department_id: @contract.department_id, end_date: @contract.end_date, notes: @contract.notes, organisation_id: @contract.organisation_id, product: @contract.product, project: @contract.project, reference: @contract.reference, sector: @contract.sector, source: @contract.source, start_date: @contract.start_date, status: @contract.status, sub_contrators: @contract.sub_contrators, supplier_name: @contract.supplier_name, value: @contract.value, value_cents: @contract.value_cents, year_awarded: @contract.year_awarded, years: @contract.years }
+    patch :update, id: @contract, contract: { annual_value_cents: @contract.annual_value_cents, category: @contract.category, department_id: @contract.department_id, end_date: @contract.end_date, notes: @contract.notes, organisation_id: @contract.organisation_id, product: @contract.product, project: @contract.project, reference: @contract.reference, sector: @contract.sector, source: @contract.source, start_date: @contract.start_date, status: @contract.status, sub_contractors: @contract.sub_contractors, supplier_name: @contract.supplier_name, value: @contract.value, value_cents: @contract.value_cents, year_awarded: @contract.year_awarded, years: @contract.years }
     assert_redirected_to contract_path(assigns(:contract))
   end
 

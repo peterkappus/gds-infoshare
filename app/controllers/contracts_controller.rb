@@ -25,6 +25,7 @@ class ContractsController < ApplicationController
     @contracts = @contracts.where(product: params[:product]) if params[:product]
     @contracts = @contracts.where("end_date < ?", Date.new(Date.parse(params[:end_date_before]).year+1,04,01)) if params[:end_date_before]
     @total_count = @contracts.count
+    @expired = @contracts.where("end_date < ?", Time.now())
     @contracts = @contracts.page params[:page]
   end
 
@@ -90,6 +91,6 @@ class ContractsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contract_params
-      params.require(:contract).permit(:reference, :source, :department_id, :supplier_name, :value, :end_date, :organisation_id, :project, :product, :value_cents, :start_date, :years, :sector, :annual_value_cents, :category, :sub_contrators, :notes, :status, :year_awarded)
+      params.require(:contract).permit(:reference, :source, :department_id, :supplier_name, :value, :end_date, :organisation_id, :project, :product, :value_cents, :start_date, :years, :sector, :annual_value_cents, :category, :sub_contractors, :notes, :status, :year_awarded)
     end
 end

@@ -16,7 +16,7 @@ class CreateContracts < ActiveRecord::Migration
       t.string :sector
       t.bigint :annual_value_cents
       t.string :category
-      t.string :sub_contrators
+      t.string :sub_contractors
       t.text :notes
       t.string :status
       t.integer :year_awarded

@@ -4,6 +4,7 @@
     |  New Contract
   h1 Listing contracts 
   h3 #{@contracts.total_count} contracts worth £#{human_value_of_contract_set(@contracts)}
+  h4 Including #{@expired.count} expired contracts #{link_to "(View)",contracts_path(expired: true)}
   - %w/product supplier_name organisation_name/.each do |param|
     - if(params[param])
       h2 Filtered: #{param.humanize}: #{params[param]}
@@ -13,7 +14,7 @@
     =link_to "Show all",page: params[:page]
   
     
-== render 'shared/import', locals: {path:import_contracts_path}
+== render partial: 'shared/import', locals: {path:import_contracts_path}
 
 = paginate @contracts
 
