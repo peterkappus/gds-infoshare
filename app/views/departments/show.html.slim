@@ -8,7 +8,7 @@ p.lead =@department.description
 
 /h1 = hello_world "Peter"
 
-h2 #{@contracts.count} Contracts (£#{human_value_of_contract_set(@contracts)})
+h2 #{@contracts.count} Contracts (#{human_value_of_contract_set(@contracts)})
 
 br.clear
 
@@ -28,6 +28,6 @@ br.clear
           td = link_to (contract.reference.to_s == "" ? "none" : contract.reference), contract
           td = link_to contract.supplier_name, supplier_name: contract.supplier_name
           td = link_to contract.organisation.name, organisation_name: contract.organisation.name if contract.organisation
-          td = money_without_cents_and_with_symbol contract.value
+          td = show_big_money contract.value
           td = link_to contract.product, product: contract.product if contract.product
           td = contract.end_date.strftime("%d %h %Y") if contract.end_date

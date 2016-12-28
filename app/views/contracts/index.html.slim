@@ -3,7 +3,7 @@
     span.glyphicon.glyphicon-plus
     |  New Contract
   h1 Listing contracts 
-  h3 #{@contracts.total_count} contracts worth £#{human_value_of_contract_set(@contracts)}
+  h3 #{@contracts.total_count} contracts worth #{show_big_money(@total_value)}
   h4 Including #{@expired.count} expired contracts #{link_to "(View)",contracts_path(expired: true)}
   - %w/product supplier_name organisation_name/.each do |param|
     - if(params[param])
@@ -47,7 +47,7 @@
           td = link_to contract.supplier_name, supplier_name: contract.supplier_name
           td
             /= "£" + number_to_human(contract.value, units: {thousand: "k", million: "m", billion: "bn"}).to_s
-            =  money_without_cents_and_with_symbol contract.value
+            =  show_big_money contract.value
           td
             = link_to contract.end_date.strftime("%d %h %Y"), end_date_before:contract.end_date if contract.end_date
           td = link_to contract.product, product: contract.product if contract.product

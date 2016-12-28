@@ -5,6 +5,9 @@ class Contract < ActiveRecord::Base
   monetize :value_cents, :allow_nil => true
   monetize :annual_value_cents, :allow_nil => true
 
+  scope :expired, lambda { where("end_date < ?", Time.now)}
+
+
   def self.search(words)
     where("lower(notes) LIKE ?","%#{words.downcase}%")
   end

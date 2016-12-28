@@ -1,31 +1,10 @@
-.page-header
-  = link_to new_product_path, class: 'btn btn-primary' do 
+h1 CTS Products
+p.lead CTS is actively developing the following products. Click to learn more about how delivery is going and learn what benefits these products are currently providing.
+- @products.each do | product |
+  h2 =link_to product.name, product
+  
+- if is_admin?
+  = link_to new_product_path, class: 'button btn-primary' do 
     span.glyphicon.glyphicon-plus
-    |  New Product
-  h1
-    | Listing products
-
-.table-responsive
-  table.table.table-striped.table-bordered.table-hover
-    thead
-      tr
-        th
-          | Name
-        th
-          | Description
-        th
-        th
-        th
-    tbody
-      - @products.each do | product |
-        tr
-          td
-            = product.name
-          td
-            = product.description
-          td
-            = link_to 'Show', product
-          td
-            = link_to 'Edit', edit_product_path(product) 
-          td
-            = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } 
+    |  Create Product
+    
