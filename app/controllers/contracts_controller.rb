@@ -18,16 +18,13 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.all
-    @contracts = @contracts.where(product: params[:product]) if params[:product]
-    @contracts = Organisation.find_by(name: params[:organisation_name]).contracts if params[:organisation_name]
-    @contracts = @contracts.where(supplier_name: params[:supplier_name]) if params[:supplier_name]
-    @contracts = @contracts.where("end_date < ?",Date.new(Date.parse(params[:end_date_before]).year+1,04,01)) if params[:end_date_before]
+    @contracts = Contract.filter(params.slice(:expired, :supplier_name, :organisation_name, :end_date_before, :product))
+
     @total_count = @contracts.count
     @expired = @contracts.expired
-    #set to expired if that's what we asked for
-    @contracts = @expired if params[:expired].present?
+    @total_count = @contracts.count
     @total_value = @contracts.pluck(:value_cents).reduce(:+).to_i/100
+    @supplier_count = @contracts.pluck(:supplier_name).uniq.count
     @contracts = @contracts.page params[:page]
   end
 

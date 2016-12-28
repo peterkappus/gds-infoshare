@@ -1,6 +1,6 @@
 h3 =link_to :Home, root_path
 h1 Departments
-
+p.lead These departments have contracts known to CTS. Click a name to view them.
 = paginate @departments
 
 .table-responsive
@@ -19,6 +19,6 @@ h1 Departments
           td = department.contracts.count
           td 
             - if (department.contracts.count > 0)
-              | £#{(department.contracts.pluck(:value_cents).reduce(:+)/100.00/1000000).round(2)}m
+              =show_big_money(department.contracts.pluck(:value_cents).reduce(:+)/100)
 
 = paginate @departments

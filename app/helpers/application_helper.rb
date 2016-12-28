@@ -5,6 +5,11 @@ module ApplicationHelper
   end
 
   def show_big_money(value)
-    "£" + number_to_human(value, significant: false, precision: 2, units: {million: 'm', billion:'bn', thousand: 'k'}, format: '%n%u')
+    "£" + number_to_human(value, significant: false, precision: 0, units: {million: 'm', billion:'bn', trillion: 'tr', thousand: 'k'}, format: '%n%u')
+  end
+
+  def big_number(number, caption)
+    render partial: 'shared/big_number', locals: {number: number, caption: caption}
+
   end
 end

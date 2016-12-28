@@ -1,12 +1,8 @@
+h3 =link_to :Contracts, contracts_path
 .page-header
-  = link_to contracts_path, class: 'btn btn-default' do 
-    span.glyphicon.glyphicon-list-alt
-    |  Back 
-  = link_to edit_contract_path(@contract), class: 'btn btn-primary' do 
-    span.glyphicon.glyphicon-pencil
-    |  Edit 
-  h1
-    | Show contract
+  .pull-right
+    = link_to :Edit, edit_contract_path(@contract), class: 'button'
+  h1 View Contract
 dl.dl-horizontal
   dt
     | Reference:

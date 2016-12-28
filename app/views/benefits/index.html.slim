@@ -1,9 +1,9 @@
 .page-header
-  = link_to new_benefit_path, class: 'btn btn-primary' do 
-    span.glyphicon.glyphicon-plus
-    |  New Benefit
-  h1
-    | Listing benefits
+  .pull-right
+    = link_to "Create new Benefit", new_benefit_path, class: 'button'
+  h3 =link_to :Home, root_path
+
+  h1 Benefits
 
 
 = paginate @benefits
@@ -64,4 +64,4 @@
 
 = paginate @benefits
 
-== render 'shared/import', locals: {path:import_benefits_path}
+/== render 'shared/import', locals: {path:import_benefits_path}

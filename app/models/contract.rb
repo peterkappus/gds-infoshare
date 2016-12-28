@@ -1,11 +1,17 @@
 class Contract < ActiveRecord::Base
+  include Filterable
   belongs_to :department
   belongs_to :organisation
 
   monetize :value_cents, :allow_nil => true
   monetize :annual_value_cents, :allow_nil => true
 
-  scope :expired, lambda { where("end_date < ?", Time.now)}
+  scope :expired, -> { where("end_date < ?", Time.now)}
+  scope :supplier_name, ->(name) { where supplier_name: name}
+  scope :organisation_name, ->(name) { where organisation_name: name}
+  scope :end_date_before, -> (end_date_before) {where "end_date < ?", Date.new(Date.parse(end_date_before).year+1,04,01)}
+  scope :product, ->(name) { where product: name}
+
 
 
   def self.search(words)

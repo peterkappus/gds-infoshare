@@ -1,7 +1,6 @@
 h3 =link_to :Home, root_path
 h1 Contracts 
-h3 #{@contracts.total_count} contracts worth #{show_big_money(@total_value)}
-h4 Including #{@expired.count} expired contracts #{link_to "(View)",contracts_path(expired: true)}
+p.lead These are the contracts known to CTS. They are obtained via Kable, The Complex Transactions Team, and other sources (including departments, themselves).
 - %w/product supplier_name organisation_name/.each do |param|
   - if(params[param])
     h2 Filtered: #{param.humanize}: #{params[param]}
@@ -9,6 +8,12 @@ h4 Including #{@expired.count} expired contracts #{link_to "(View)",contracts_pa
 - if(params[:end_date_before])
   h2 Filtered where end date is before 1 Apr #{Date.parse(params[:end_date_before]).year+1}
   =link_to "Show all",page: params[:page]
+
+.grid-row
+  ==big_number @contracts.total_count, "Contracts"
+  ==big_number show_big_money(@total_value), "Total Value"
+  ==big_number @supplier_count, "Unique Suppliers"
+  ==big_number @expired.count, "Expired Contracts #{link_to("(View)",contracts_path(expired: true))}"
   
 = paginate @contracts
 
@@ -16,20 +21,13 @@ h4 Including #{@expired.count} expired contracts #{link_to "(View)",contracts_pa
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
-        th
-          | Reference
-        th
-          | Department
-        th
-          | Organisation
-        th
-          | Supplier name
-        th
-          | Value
-        th
-          | End date
-        th
-          | Products
+        th Reference
+        th Department
+        th Organisation
+        th Supplier name
+        th Value
+        th End date
+        th Products
     tbody
       - @contracts.each do | contract |
         tr
@@ -49,7 +47,11 @@ h4 Including #{@expired.count} expired contracts #{link_to "(View)",contracts_pa
 = paginate @contracts
 
 -if is_admin?
-  = link_to "Create New Contract", new_contract_path, class: 'button'
-
-  h2 Import Contract Data
-  == render partial: 'shared/import', locals: {path:import_contracts_path}
+  .admin
+    h2 Admin Options
+    = link_to "Create New Contract", new_contract_path, class: 'button'
+    .import
+      br
+      h3 Import Contract Data (CSV)
+      
+      == render partial: 'shared/import', locals: {path:import_contracts_path}
