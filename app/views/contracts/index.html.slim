@@ -3,11 +3,13 @@ h1 Contracts
 p.lead These are the contracts known to CTS. They are obtained via Kable, The Complex Transactions Team, and other sources (including departments, themselves).
 - %w/product supplier_name organisation_name/.each do |param|
   - if(params[param])
+    .pull-right
+      =link_to "Show all",page: params[:page]
     h2 Filtered: #{param.humanize}: #{params[param]}
-    =link_to "Show all",page: params[:page]
 - if(params[:end_date_before])
+  .pull-right
+    =link_to "Show all",page: params[:page]
   h2 Filtered where end date is before 1 Apr #{Date.parse(params[:end_date_before]).year+1}
-  =link_to "Show all",page: params[:page]
 
 .grid-row
   ==big_number @contracts.total_count, "Contracts"
@@ -21,12 +23,12 @@ p.lead These are the contracts known to CTS. They are obtained via Kable, The Co
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
-        th Reference
-        th Department
+        th =sortable(:reference_key, :Reference)
+        th =sortable('departments.name',:Department)
         th Organisation
-        th Supplier name
-        th Value
-        th End date
+        th =sortable("supplier_name","Supplier name")
+        th =sortable("value_cents",:Value)
+        th =sortable("end_date","End date")
         th Products
     tbody
       - @contracts.each do | contract |

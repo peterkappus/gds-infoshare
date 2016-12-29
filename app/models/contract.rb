@@ -14,8 +14,6 @@ class Contract < ActiveRecord::Base
   scope :end_date_before, -> (end_date_before) {where "end_date < ?", Date.new(Date.parse(end_date_before).year+1,04,01)}
   scope :product, ->(name) { where product: name}
 
-
-
   def self.search(words)
     where("lower(notes) LIKE ?","%#{words.downcase}%")
   end

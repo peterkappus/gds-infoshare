@@ -1,9 +1,6 @@
-.page-header
-  = link_to new_organisation_path, class: 'btn btn-primary' do 
-    span.glyphicon.glyphicon-plus
-    |  New Organisation
-  h1
-    | Listing organisations
+h3 =link_to :Home, root_path
+h1 Organisations
+p.lead Organisations which have contracts known to CTS.
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
@@ -13,19 +10,10 @@
           | Name
         th
           | Department
-        th
-        th
-        th
     tbody
       - @organisations.each do | organisation |
         tr
           td
             = organisation.name
           td
-            = link_to organisation.department.name, organisation.department if organisation.department
-          td
-            = link_to 'Show', organisation
-          td
-            = link_to 'Edit', edit_organisation_path(organisation) 
-          td
-            = link_to 'Destroy', organisation, method: :delete, data: { confirm: 'Are you sure?' } 
+            = link_to organisation.department.name, organisation.department if organisation.department          
