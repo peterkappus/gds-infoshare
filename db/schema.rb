@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20161216122215) do
     t.string   "sector"
     t.integer  "annual_value_cents", limit: 8
     t.string   "category"
-    t.string   "sub_contrators"
+    t.string   "sub_contractors"
     t.text     "notes"
     t.string   "status"
     t.integer  "year_awarded"
