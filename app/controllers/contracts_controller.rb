@@ -22,7 +22,7 @@ class ContractsController < ApplicationController
   def index
 
     #join to departments so we can sort on 'departments.name' Do the same for any other joined table (e.g. orgs)
-    @contracts = Contract.filter(params.slice(:is_expired, :supplier_name, :organisation_name, :end_date_before, :product)).joins(:department).order(sort_column + ' '  + sort_direction)
+    @contracts = Contract.filter(params.slice(:is_expired, :supplier_name, :organisation_name, :end_date_before, :product)).includes(:department).includes(:organisation).order(sort_column + ' '  + sort_direction)
 
     @total_count = @contracts.count
     @expired = @contracts.expired
@@ -99,7 +99,7 @@ class ContractsController < ApplicationController
 
     def sort_column
       #whitelist column names
-      %w[supplier_name value_cents end_date departments.name].include?(params[:sort_column]) ? params[:sort_column].to_s : "reference"
+      %w[supplier_name value_cents organisations.name end_date departments.name].include?(params[:sort_column]) ? params[:sort_column].to_s : "reference"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

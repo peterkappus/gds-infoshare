@@ -64,6 +64,15 @@
   .print_only
     display: none
 
+
+table.sortable
+  /* ▲ and ▼ or &#9650; and &#9660; or &#x25B2; and &#x25BC; */
+  th a.current.asc:after
+    content: ' ▲'
+  th a.current.desc:after
+    content: ' ▼'
+
+
 .clear
   clear: both
 body
