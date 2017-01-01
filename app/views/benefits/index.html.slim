@@ -28,21 +28,16 @@
         th
           | Cts proposal
         th
-          | Type
-        th
           | State
-        th
-        th
-        th
     tbody
       - @benefits.each do | benefit |
         tr
           td
-            = benefit.department
+            = benefit.department.name
           td
-            = benefit.organisation
+            = benefit.organisation.name
           td
-            = benefit.product
+            = benefit.product.name
           td
             = benefit.location
           td
@@ -52,16 +47,16 @@
           td
             = benefit.cts_proposal
           td
-            = benefit.type
-          td
             = benefit.state
-          td
-            = link_to 'Show', benefit
-          td
-            = link_to 'Edit', edit_benefit_path(benefit) 
-          td
-            = link_to 'Destroy', benefit, method: :delete, data: { confirm: 'Are you sure?' } 
 
 = paginate @benefits
 
-/== render 'shared/import', locals: {path:import_benefits_path}
+-if is_admin?
+  .admin
+    h2 Admin Options
+    = link_to "Create New Benefit", new_benefit_path, class: 'button'
+    .import
+      br
+      h3 Import Benefits Data (CSV)
+
+      == render partial: 'shared/import', locals: {path:import_benefits_path}

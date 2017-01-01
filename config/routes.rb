@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :benefit_years
-  resources :benefits
+  resources :benefits do
+    collection do
+      post 'import'
+    end
+  end
   resources :products
   resources :contracts do
     collection do
