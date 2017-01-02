@@ -4,7 +4,8 @@ class BenefitsController < ApplicationController
   # GET /benefits
   # GET /benefits.json
   def index
-    @benefits = Benefit.all.page params[:page]
+    @q = Benefit.includes(:department, :organisation, :product).ransack(params[:q])
+    @benefits = @q.result.page params[:page]
   end
 
   # GET /benefits/1

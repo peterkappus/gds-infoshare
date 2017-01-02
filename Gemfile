@@ -8,6 +8,9 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem "omniauth-google-oauth2"
 
 
+#for easy sorting & searching
+gem 'ransack'
+
 gem 'puma'
 gem "slim-rails"
 

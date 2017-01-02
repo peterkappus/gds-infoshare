@@ -13,22 +13,14 @@
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
-        th
-          | Department
-        th
-          | Organisation
-        th
-          | Product
-        th
-          | Location
-        th
-          | Original offering
-        th
-          | Non cts alternative
-        th
-          | Cts proposal
-        th
-          | State
+        th =sort_link @q, :department_name, "Department"
+        th =sort_link @q, :organisation_name, "Organisation"
+        th =sort_link @q, :product_name, "Product"
+        th =sort_link @q, :location
+        th Original offering
+        th Non cts alternative
+        th CTS proposal
+        th =sort_link @q, :state
     tbody
       - @benefits.each do | benefit |
         tr
@@ -47,7 +39,7 @@
           td
             = benefit.cts_proposal
           td
-            = benefit.state.titlecase
+            = benefit.state.titlecase if benefit.state
 
 = paginate @benefits
 

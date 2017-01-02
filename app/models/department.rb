@@ -1,6 +1,8 @@
 class Department < ActiveRecord::Base
   has_many :contracts
   has_many :organisations
+  has_many :benefits
+
   default_scope { order(:name) }
   monetize :total_value_cents, :allow_nil => true
 
