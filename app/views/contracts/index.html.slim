@@ -16,7 +16,7 @@ p.lead These are the contracts known to CTS. They are obtained via Kable, The Co
   ==big_number @contracts.total_count, "Contracts"
   ==big_number show_big_money(@total_value), "Total Value"
   ==big_number @supplier_count, "Unique Suppliers"
-  ==big_number @expired.count, "Expired Contracts #{link_to("(View)",contracts_path(is_expired: true))}"
+  ==big_number @expired.count, "Expired Contracts #{link_to("(View)",contracts_path(params.merge(is_expired: true)))}"
 
 = paginate @contracts
 
@@ -35,7 +35,10 @@ p.lead These are the contracts known to CTS. They are obtained via Kable, The Co
       - @contracts.each do | contract |
         tr
           td= link_to contract.reference, contract
-          td = link_to contract.department.name, contract.department if(contract.department)
+          /link to department
+          /td = link_to contract.department.name, contract.department if(contract.department)
+          /stay on contacts page but filter by department name
+          td = link_to contract.department.name, department_name: contract.department.name if(contract.department)
           td = link_to contract.organisation.name, organisation_name: contract.organisation.name if contract.organisation
           td = link_to contract.supplier_name, supplier_name: contract.supplier_name
           td

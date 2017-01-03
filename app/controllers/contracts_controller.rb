@@ -23,7 +23,7 @@ class ContractsController < ApplicationController
 
     #join to departments so we can sort on 'departments.name' Do the same for any other joined table (e.g. orgs)
     #@contracts = Contract.filter(params.slice(:is_expired, :supplier_name, :organisation_name, :end_date_before, :product)).includes(:department).includes(:organisation).order(sort_column + ' '  + sort_direction)
-    @q = Contract.includes(:department, :organisation).ransack(params[:q])
+    @q = Contract.filter(params.slice(:is_expired, :department_name, :supplier_name, :organisation_name, :end_date_before, :product)).includes(:department, :organisation).ransack(params[:q])
     @contracts = @q.result.page params[:page]
 
     @total_count = @contracts.count

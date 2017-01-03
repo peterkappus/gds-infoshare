@@ -10,7 +10,9 @@ class Contract < ActiveRecord::Base
   #have to accept a parameter because our Filterable concern passes one to each filter scope...slightly hacky, c'est la vie
   scope :is_expired, ->(bool) { where("end_date < ?", Time.now)}
   scope :expired, -> {is_expired(true)}
+  scope :active, -> { where("end_date >= ?", Time.now)}
   scope :supplier_name, ->(name) { where supplier_name: name}
+  scope :department_name, ->(name) { includes(:department).where(departments: {name: name})}
   scope :organisation_name, ->(name) { includes(:organisation).where(organisations: {name: name})}
   scope :end_date_before, -> (end_date_before) {where "end_date < ?", Date.new(Date.parse(end_date_before).year+1,04,01)}
   scope :product, ->(name) { where product: name}

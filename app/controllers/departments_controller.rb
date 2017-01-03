@@ -10,7 +10,7 @@ class DepartmentsController < ApplicationController
   # GET /departments/1
   # GET /departments/1.json
   def show
-    @contracts = @department.contracts
+    @contracts = @department.contracts.active
     @contracts = @contracts.where(product: params[:product]) if params[:product]
     @contracts = Organisation.find_by(name: params[:organisation_name]).contracts if params[:organisation_name]
     @contracts = @contracts.where(supplier_name: params[:supplier_name]) if params[:supplier_name]

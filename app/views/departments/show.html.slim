@@ -8,7 +8,8 @@ p.lead =@department.description
 
 /h1 = hello_world "Peter"
 
-h2 #{@contracts.count} Contracts (#{human_value_of_contract_set(@contracts)})
+==big_number @contracts.count, "Active Contracts"
+==big_number human_value_of_contract_set(@contracts.active), "Value of active contracts"
 
 br.clear
 

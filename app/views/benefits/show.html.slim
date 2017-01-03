@@ -6,20 +6,19 @@
     span.glyphicon.glyphicon-pencil
     |  Edit
   h1
-    | Show benefit
+    | Benefit detail
 dl.dl-horizontal
   dt
     | Department:
   dd
-    = @benefit.department
+    = link_to @benefit.department, @benefit.department
   dt
     | Organisation:
   dd
-    = @benefit.organisation
+    = link_to @benefit.organisation, @benefit.organisation
   dt
     | Product:
-  dd
-    = @benefit.product
+  dd =link_to @benefit.product.name, @benefit.product
   dt
     | Location:
   dd
