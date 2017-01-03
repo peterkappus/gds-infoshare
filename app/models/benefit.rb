@@ -2,7 +2,7 @@ class Benefit < ActiveRecord::Base
   belongs_to :department
   belongs_to :organisation
   belongs_to :product
-  enum state: [:planned, :targeted, :estimated, :evidenced]
+  enum state: {planned:0, targeted:1, estimated:2, evidenced:3}
 
 
   #TODO: generalise this into a concern...
@@ -33,7 +33,7 @@ class Benefit < ActiveRecord::Base
 
           #skip columns which should be associations...
           #just assign string cols
-          unless(/#{col_name}/ =~ 'department product organisation')
+          unless(/#{col_name}/ =~ 'department product organisation state')
             record.send("#{col_name}=",value)
           end
 
@@ -48,6 +48,8 @@ class Benefit < ActiveRecord::Base
         record.organisation = Organisation.where(name: row['organisation']).first_or_create
         record.department = Department.where(name: row['department']).first_or_create
         record.product = Product.where(name: row['product']).first_or_create
+        #hacky way to get our enum value
+        record.state = Benefit.states[row['state']]
         #record.organisation.department = record.department
 
         record.save!

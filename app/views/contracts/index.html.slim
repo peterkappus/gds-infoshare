@@ -3,9 +3,10 @@ h1 Contracts
 p.lead These are the contracts known to CTS. They are obtained via Kable, The Complex Transactions Team, and other sources (including departments, themselves).
 - %w/product supplier_name organisation_name/.each do |param|
   - if(params[param])
-    .pull-right
-      =link_to "Show all",page: params[:page]
-    h2 Filtered: #{param.humanize}: #{params[param]}
+    .panel.filters
+      .pull-right
+        =link_to "Show all",page: params[:page]
+      h2 #{param.humanize}: #{params[param]}
 - if(params[:end_date_before])
   .pull-right
     =link_to "Show all",page: params[:page]
@@ -23,27 +24,24 @@ p.lead These are the contracts known to CTS. They are obtained via Kable, The Co
   table.table.table-striped.table-bordered.table-hover.sortable
     thead
       tr
-        th =sortable(:reference_key, :Reference)
-        th =sortable('departments.name',:Department)
-        th =sortable('organisations.name', :Organisation)
-        th =sortable("supplier_name","Supplier name")
-        th =sortable("value_cents",:Value)
-        th =sortable("end_date","End date")
+        th =sort_link @q, :reference_key, "Reference"
+        th =sort_link @q, :department_name, "Department"
+        th =sort_link @q, :organisation_name, "Organisation"
+        th =sort_link @q, :supplier_name, "Supplier"
+        th =sort_link @q, :value_cents, "Value"
+        th =sort_link @q, :end_date
         th Products
     tbody
       - @contracts.each do | contract |
         tr
-          td
-            = link_to contract.reference, contract
-          td
-            = link_to contract.department.name, contract.department if(contract.department)
+          td= link_to contract.reference, contract
+          td = link_to contract.department.name, contract.department if(contract.department)
           td = link_to contract.organisation.name, organisation_name: contract.organisation.name if contract.organisation
           td = link_to contract.supplier_name, supplier_name: contract.supplier_name
           td
             /= "£" + number_to_human(contract.value, units: {thousand: "k", million: "m", billion: "bn"}).to_s
             =  show_big_money contract.value
-          td
-            = link_to contract.end_date.strftime("%d %h %Y"), end_date_before:contract.end_date if contract.end_date
+          td = link_to contract.end_date.strftime("%d %h %Y"), end_date_before:contract.end_date if contract.end_date
           td = link_to contract.product, product: contract.product if contract.product
 
 = paginate @contracts

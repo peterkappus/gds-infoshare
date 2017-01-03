@@ -15,4 +15,4 @@ dl.dl-horizontal
   dt
     | Department:
   dd
-    = link_to @organisation.department.name, @organisation.department
+    = link_to @organisation.department.name, @organisation.department if @organisation.department
