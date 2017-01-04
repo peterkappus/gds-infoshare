@@ -21,4 +21,10 @@
       =collection_select :organisation, :department_id, Department.all, :id, :name, {prompt:true,include_blank:true}, {class: :selectpicker}
   .form-group
     .col-sm-offset-2.col-sm-10
-      = f.submit class: "btn btn-primary"
+      = f.submit class: "button btn-primary"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      =link_to :Cancel, @organisation
+      -if(@organisation.benefits.empty?)
+        .destroy
+          = link_to 'Destroy', @organisation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button danger destroy'

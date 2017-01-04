@@ -24,3 +24,5 @@
   .form-group
     .col-sm-offset-2.col-sm-10
       =link_to :Cancel, @product
+      .destroy
+        = link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button danger destroy'

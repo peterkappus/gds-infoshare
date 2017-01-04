@@ -9,14 +9,13 @@
   = stylesheet_link_tag "application", media: :all
 - content_for :page_title do
   | CTS Benefits
-- content_for :inside_header do
-  /
-    - if signed_in?
-      form#search.site-search method="get" action="..."
-        .content
-          /label for="site-search-text" Search the service manual
-          input#site-search-text.js-search-focus type="search" name="q" title="Search" role="search" placeholder="Search"
-          input.submit type="submit" value="Search"
+/- content_for :inside_header do
+  - if signed_in?
+    form#search.site-search method="get" action="..."
+      .content
+        /label for="site-search-text" Search the service manual
+        input#site-search-text.js-search-focus type="search" name="q" title="Search" role="search" placeholder="Search"
+        input.submit type="submit" value="Search"
 - content_for :header_class do
   | with-proposition
 - content_for :proposition_header do
@@ -27,14 +26,14 @@
         =link_to "CTS Benefits", root_path, :id=>"proposition-name"
         - if signed_in?
           ul#proposition-links
-            li =link_to "About", about_path
-            li = link_to :Contracts, contracts_path
-            /li = link_to :Portfolios, portfolios_path
-            li = link_to :Departments, departments_path
-            li = link_to :Organisations, organisations_path
-            li = link_to :Benefits, benefits_path
-            /li = link_to :Deployments, deployments_path
             li = link_to :Products, products_path
+            li = link_to :Benefits, benefits_path
+            /li = link_to :Portfolios, portfolios_path
+            li = link_to :Contracts, contracts_path
+            li = link_to :Departments, departments_path
+            /li = link_to :Organisations, organisations_path
+            /li = link_to :Deployments, deployments_path
+            li =link_to "About", about_path
             /li = link_to :People, people_path
             //li = link_to "Sign out", signout_path
             -if is_admin?

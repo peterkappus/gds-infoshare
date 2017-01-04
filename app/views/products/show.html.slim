@@ -1,10 +1,26 @@
 
 = link_to :Products, products_path
+.pull-right
+  = link_to 'Edit', edit_product_path(@product), class: 'button'
 h1 = @product.name
-p.lead = @product.description
-h2 Benefits
-p.lead No benefits currently reported for this product. Please speak with the product owner for more information.
-= link_to 'Edit', edit_product_path(@product), class: 'button'
-br
-br
-= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button danger'
+- if @product.description.present?
+  p.lead = @product.description
+- else
+  p No description available. Please #{link_to "add a description", edit_product_path}.
+-if @product.benefits.empty?
+  h2 Benefits
+  p No benefits have been recorded (or estimated) for this product. Please speak with the product manager for more information.
+-else
+  h2 Benefits (#{@product.benefits.count})
+  table.table.table-striped.table-bordered.table-hover.sortable
+    thead
+      tr
+        th Department
+        th Location
+        th Value (£)
+    tbody
+      - @product.benefits.each do |benefit|
+        tr
+          td = link_to benefit.department, benefit
+          td = link_to benefit.location, benefit if benefit.location
+          td = link_to show_big_money(benefit.total_value_cents), benefit

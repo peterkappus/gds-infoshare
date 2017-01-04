@@ -1,12 +1,5 @@
-.page-header
-  = link_to benefits_path, class: 'btn btn-default' do
-    span.glyphicon.glyphicon-list-alt
-    |  Back
-  = link_to edit_benefit_path(@benefit), class: 'btn btn-primary' do
-    span.glyphicon.glyphicon-pencil
-    |  Edit
-  h1
-    | Benefit detail
+h3 = link_to :Benefits, benefits_path
+h1 Benefit Detail
 dl.dl-horizontal
   dt
     | Department:
@@ -15,7 +8,7 @@ dl.dl-horizontal
   dt
     | Organisation:
   dd
-    = link_to @benefit.organisation, @benefit.organisation
+    = link_to @benefit.organisation.name, @benefit.organisation if @benefit.organisation
   dt
     | Product:
   dd =link_to @benefit.product.name, @benefit.product
@@ -38,4 +31,16 @@ dl.dl-horizontal
   dt
     | State:
   dd
-    = @benefit.state
+    = @benefit.state.capitalize
+  
+h2 Target Benefits by Year
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      - @benefit.benefit_years.each do | by |
+        th=by.fy_end_date.year
+    tbody
+      tr
+      - @benefit.benefit_years.each do | by |
+        td = show_big_money(by.target_value_cents)

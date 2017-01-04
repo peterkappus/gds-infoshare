@@ -7,6 +7,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 #authentication
 gem "omniauth-google-oauth2"
 
+#for easy enum dropdowns
+gem 'enum_help'
 
 #for easy sorting & searching
 gem 'ransack'

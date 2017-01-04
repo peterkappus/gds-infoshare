@@ -43,7 +43,14 @@
   .form-group
     = f.label :state, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.number_field :state, class: "form-control"
+      fieldset.inline
+        /legend.visuallyhidden Please select a status
+        - Benefit.states.map do |key,value|
+          label.block-label for="radio-inline-#{key}" class="#{key}"
+            -if (@benefit.state == key)
+              input id="radio-inline-#{key}" type="radio" name="benefit[state]" value="#{key}" checked="checked" #{key.humanize.capitalize}
+            -else
+              input id="radio-inline-#{key}" type="radio" name="benefit[state]" value="#{key}" #{key.humanize.capitalize}
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: "btn btn-primary"

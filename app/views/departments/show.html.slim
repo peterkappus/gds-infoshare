@@ -8,27 +8,26 @@ p.lead =@department.description
 
 /h1 = hello_world "Peter"
 
-==big_number @contracts.count, "Active Contracts"
+==big_number @contracts.count, link_to("Active Contracts", contracts_path(department_name:@department.name))
 ==big_number human_value_of_contract_set(@contracts.active), "Value of active contracts"
-
-br.clear
-
-.table-responsive
-  table.table.table-striped.table-bordered.table-hover
-    thead
-      tr
-        th Reference
-        th Supplier
-        th Organisation
-        th Value
-        th Product(s)
-        th End date
-    tbody
-      - @contracts.order(value_cents: :desc).each do | contract |
+/
+  br.clear
+  .table-responsive
+    table.table.table-striped.table-bordered.table-hover
+      thead
         tr
-          td = link_to (contract.reference.to_s == "" ? "none" : contract.reference), contract
-          td = link_to contract.supplier_name, supplier_name: contract.supplier_name
-          td = link_to contract.organisation.name, organisation_name: contract.organisation.name if contract.organisation
-          td = show_big_money contract.value
-          td = link_to contract.product, product: contract.product if contract.product
-          td = contract.end_date.strftime("%d %h %Y") if contract.end_date
+          th Reference
+          th Supplier
+          th Organisation
+          th Value
+          th Product(s)
+          th End date
+      tbody
+        - @contracts.order(value_cents: :desc).each do | contract |
+          tr
+            td = link_to (contract.reference.to_s == "" ? "none" : contract.reference), contract
+            td = link_to contract.supplier_name, supplier_name: contract.supplier_name
+            td = link_to contract.organisation.name, organisation_name: contract.organisation.name if contract.organisation
+            td = show_big_money contract.value
+            td = link_to contract.product, product: contract.product if contract.product
+            td = contract.end_date.strftime("%d %h %Y") if contract.end_date

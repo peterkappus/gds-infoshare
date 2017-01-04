@@ -18,17 +18,18 @@
         th =sort_link @q, :organisation_name, "Organisation"
         th =sort_link @q, :product_name, "Product"
         th =sort_link @q, :location
+        th =sort_link @q, :state
+        th =sort_link @q, :total_value_cents, "Value (£)"
         /
           th Original offering
           th Non cts alternative
           th CTS proposal
-        th =sort_link @q, :state
     tbody
       - @benefits.each do | benefit |
         tr
           td =link_to benefit.id, benefit
-          td = link_to benefit.department.name, benefit.department
-          td = link_to benefit.organisation.name, benefit.organisation
+          td = link_to benefit.department.name, benefit.department if benefit.department
+          td = link_to benefit.organisation.name, benefit.organisation if benefit.organisation
           td = link_to benefit.product.name, benefit.product
           td = benefit.location
           /
@@ -39,6 +40,7 @@
             td
               = benefit.cts_proposal
           td = benefit.state.titlecase if benefit.state
+          td = show_big_money(benefit.total_value)
 
 = paginate @benefits
 

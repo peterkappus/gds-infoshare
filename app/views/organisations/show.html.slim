@@ -1,18 +1,5 @@
-.page-header
-  = link_to organisations_path, class: 'btn btn-default' do 
-    span.glyphicon.glyphicon-list-alt
-    |  Back 
-  = link_to edit_organisation_path(@organisation), class: 'btn btn-primary' do 
-    span.glyphicon.glyphicon-pencil
-    |  Edit 
-  h1
-    | Show organisation
-dl.dl-horizontal
-  dt
-    | Name:
-  dd
-    = @organisation.name
-  dt
-    | Department:
-  dd
-    = link_to @organisation.department.name, @organisation.department if @organisation.department
+.pull-right
+  = link_to 'Edit', edit_organisation_path(@organisation), class: 'button'
+h3 = link_to :Organisations, organisations_path
+h1 = @organisation.name
+p Part of #{link_to @organisation.department.name, @organisation.department if @organisation.department}
