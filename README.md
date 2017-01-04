@@ -75,6 +75,7 @@ bundle exec rake db:setup
 #### Authentication
 For now, each user of the system must have her/his account manually created by an admin before they can log in. This is to prevent access by anyone within a given domain. Any Admin user can create other users and may grant or revoke admin status from other users. It is impossible to revoke your own admin status.
 
+
 **NOTE:** You **MUST** create the first admin login account. It's recommended you do this via the rails console. For example, given an admin user named Peter with the email peter@somewhere.com you could do the following:
 ```
 rails console

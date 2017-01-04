@@ -2,8 +2,13 @@ class Benefit < ActiveRecord::Base
   belongs_to :department
   belongs_to :organisation
   belongs_to :product
+  has_many :benefit_years, dependent: :destroy #destroy years when bene gets deleted
   enum state: {planned:0, targeted:1, estimated:2, evidenced:3}
 
+
+  def total_value_cents
+    benefit_years.map{|year| year.target_value_cents}.reduce(:+)
+  end
 
   #TODO: generalise this into a concern...
   def self.import(file)
@@ -50,9 +55,18 @@ class Benefit < ActiveRecord::Base
         record.product = Product.where(name: row['product']).first_or_create
         #hacky way to get our enum value
         record.state = Benefit.states[row['state']]
-        #record.organisation.department = record.department
 
-        record.save!
+        #save the record and add the child benefit years
+        if(record.save!)
+          #check the next 10 years...
+          [*(Time.now.year..Time.now.year+10)].each do |year|
+            if(row["fy_ending_#{year}"])
+              benefit_year = BenefitYear.create!(fy_end_date:Date.new(year,3,31), target_value_cents: row["fy_ending_#{year}"].to_i * 100)
+              record.benefit_years<<benefit_year
+              record.save!
+            end
+          end
+        end
       end
     end
 

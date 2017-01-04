@@ -13,7 +13,9 @@
   .form-group
     = f.label :department, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :department, class: "form-control"
+      /= f.text_field :department, class: "form-control"
+      =f.collection_select :department_id, Department.all, :id, :name, {prompt:true,include_blank:true}, {class: :selectpicker}
+  
   .form-group
     = f.label :organisation, class: "col-sm-2 control-label"
     .col-sm-10
@@ -21,7 +23,7 @@
   .form-group
     = f.label :product, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :product, class: "form-control"
+      =f.collection_select :product_id, Product.all, :id, :name, {prompt:true,include_blank:true}, {class: :selectpicker}
   .form-group
     = f.label :location, class: "col-sm-2 control-label"
     .col-sm-10

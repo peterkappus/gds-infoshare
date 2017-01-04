@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161231200438) do
+ActiveRecord::Schema.define(version: 20170103120853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "benefit_years", force: :cascade do |t|
     t.date     "fy_end_date"
-    t.integer  "target_amount"
+    t.integer  "target_value_cents", limit: 8
     t.integer  "benefit_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "benefit_years", ["benefit_id"], name: "index_benefit_years_on_benefit_id", using: :btree
