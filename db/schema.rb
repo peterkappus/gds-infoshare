@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20170103120853) do
     t.date     "fy_end_date"
     t.integer  "target_value_cents", limit: 8
     t.integer  "benefit_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "benefit_years", ["benefit_id"], name: "index_benefit_years_on_benefit_id", using: :btree
