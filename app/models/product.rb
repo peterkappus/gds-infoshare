@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
 
   def total_value_cents
     benefits.map do |b|
-      total_value_cents
+      b.total_value_cents
     end.reduce(:+)/100
   end
 end
