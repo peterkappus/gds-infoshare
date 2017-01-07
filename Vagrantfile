@@ -71,32 +71,35 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
    config.vm.provision "shell", inline: <<-SHELL
+    set -e
+    set -x
+
+    cd #why???
+
     sudo apt-get update
-    sudo apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs
+    sudo apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs 2> /dev/null
 
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    echo 'export PATH="/home/ubuntu/.rbenv/bin:$PATH"' >> ~/.bashrc
-    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-
-    # use in this session
-    export PATH="/home/ubuntu/.rbenv/bin:$PATH"
-
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-    echo 'export PATH="/home/ubuntu/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+    pathstring='export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$PATH"'
+    echo $pathstring >> ~/.bashrc
+    eval $pathstring
 
-    #use in this session
-    export PATH="/home/ubuntu/.rbenv/plugins/ruby-build/bin:$PATH"
+    initstring = 'eval "$(rbenv init -)"'
+    echo $initstring >> ~/.bashrc
+    eval $initstring
 
     rbenv install 2.3.3
     rbenv global 2.3.3
     #ruby -v
 
-    gem install bundler
+    gem install bundler rails
 
+    #why?
     curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
     sudo apt-get install -y nodejs
 
-    gem install rails -v 5.0.0.1
+    #gem install rails -v 5.0.0.1
     rbenv rehash
 
     #POSTGRES
