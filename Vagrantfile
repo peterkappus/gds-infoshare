@@ -85,7 +85,7 @@ Vagrant.configure("2") do |config|
     echo $pathstring >> ~/.bashrc
     eval $pathstring
 
-    initstring = 'eval "$(rbenv init -)"'
+    initstring = 'eval "\$(rbenv init -)"'
     echo $initstring >> ~/.bashrc
     eval $initstring
 
