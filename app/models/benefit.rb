@@ -19,7 +19,7 @@ class Benefit < ActiveRecord::Base
   def self.import(file)
     require 'csv' #probably should put this at the top, but I don't *always* want to include it... Some smarter way to bundle this up?
 
-    required_cols = %w(department	organisation	product	location	original_offering	non_cts_alternative	cts_proposal	state	notes	evidence)
+    required_cols = %w(product department	organisation	location	original_offering	non_cts_alternative	cts_proposal	state	notes	evidence)
 
     #subtract supplied columns from required columns to see if any are missing
     missing_cols = required_cols - CSV.read(file.path,headers: true).headers
@@ -30,9 +30,11 @@ class Benefit < ActiveRecord::Base
 
       #WATCH OUT! :) Import replaces everything!
       Benefit.destroy_all
+      Department.destroy_all
+      Product.destroy_all
 
       CSV.foreach(file.path, headers: true) do |row|
-        next if row[required_cols[0]] == 'n/a'
+        next if(row[required_cols[0]] == 'n/a' || row[required_cols[0]].nil?)
 
         #new role to hold our values
         record = Benefit.new()

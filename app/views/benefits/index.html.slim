@@ -29,7 +29,8 @@
         tr
           td =link_to benefit.id, benefit
           td = link_to benefit.department.name, benefit.department if benefit.department
-          td = link_to benefit.organisation.name, benefit.organisation if benefit.organisation
+          td = benefit.organisation.name if benefit.organisation
+          /td = link_to benefit.organisation.name, benefit.organisation if benefit.organisation
           td = link_to benefit.product.name, benefit.product
           td = benefit.location
           /

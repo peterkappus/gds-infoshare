@@ -4,14 +4,17 @@ h1.heading-xlarge CTS Dashboard
   p.lead If you already have an account, please sign in below.
   = link_to "Sign in", "/auth/google_oauth2", :class=>"button button-start"
 -else
-  p.lead This tool is designed to give the CTS team an easy place to browse data on expiring contracts, departments involved, products that we're building and benefits being delivered.
+  p.lead This tool provides a view of unique benefits being delivered by each product through deployment into various departments. 
   .grid-row
     .column-third
       h2 =link_to "#{Product.all.count} Products", products_path
-      p Products that CTS is building and see  progress and benefits being deliverd.
-    .column-third
+      p Benefits by product
+    /.column-third
       h2 =link_to "#{Contract.all.count} Contracts", contracts_path
       p Data on expiring contracts currently known to CTS.
     .column-third
+      h2 =link_to "#{Benefit.all.count} Unique Benefits", benefits_path
+      p Benefits information.
+    .column-third
       h2 =link_to "#{Department.all.count} Departments", departments_path
-      p Contract information by department.
+      p A list of departments and associated benefits.
