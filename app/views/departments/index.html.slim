@@ -8,16 +8,18 @@ p.lead These departments have contracts known to CTS. Click a name to view them.
     thead
       tr
         th Name
-        th Description
-        th contracts
-        th contract value
+        th Total Benefits
+        /th Description
+        /th contracts
+        /th contract value
     tbody
       - @departments.each do | department |
         tr
-          td = link_to department, department
-          td = department.description
-          td = department.contracts.count
-          td 
+          td = link_to department.name, department
+          td = show_big_money(department.total_benefits_value)
+          /td = department.description
+          /td = department.contracts.count
+          /td 
             - if (department.contracts.count > 0)
               =show_big_money(department.contracts.pluck(:value_cents).reduce(:+)/100)
 

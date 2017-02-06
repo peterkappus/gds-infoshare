@@ -11,6 +11,12 @@ class Department < ActiveRecord::Base
     name
   end
 
+
+  #TODO: move to a concern...also appears in product
+  def total_benefits_value
+    benefits.map{|b| b.total_value_cents}.reduce(:+).to_i
+  end
+
   def self.search(words)
     where("lower(name) LIKE ?","%#{words.downcase}%")
   end

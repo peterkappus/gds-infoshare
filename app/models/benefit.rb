@@ -4,6 +4,7 @@ class Benefit < ActiveRecord::Base
   belongs_to :product
   has_many :benefit_years, dependent: :destroy #destroy years when bene gets deleted
   enum state: {targeted:0, planned:1, estimated:2, evidenced:3}
+  #default_scope { order(created_at: :desc) }
 
 
   def total_value_cents

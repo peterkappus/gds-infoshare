@@ -11,7 +11,7 @@ h1 = @product.name
   h2 Benefits
   p No benefits have been recorded (or estimated) for this product. Please speak with the product manager for more information.
 -else
-  h2 Benefits (#{@product.benefits.count})
+  h2 Benefits (#{@product.benefits.count}) - #{show_big_money(@product.total_value_cents)}
   table.table.table-striped.table-bordered.table-hover.sortable
     thead
       tr

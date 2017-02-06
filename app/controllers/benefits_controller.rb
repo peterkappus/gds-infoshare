@@ -16,6 +16,7 @@ class BenefitsController < ApplicationController
   #TODO: DRY this up...
   def import
     if(params[:file])
+      puts "ok!"
       msg = Benefit.import(params[:file])
       if(msg.to_s.empty?)
         redirect_to benefits_path, notice: "Import successful."
@@ -23,7 +24,7 @@ class BenefitsController < ApplicationController
         redirect_to benefits_path, flash: {:error=> msg}
       end
     else
-      redirect_to index_path, flash: {:error=> "Oops, no CVS file specified."}
+      redirect_to benefits_path, flash: {:error=> "Oops, no CVS file specified."}
     end
   end
 

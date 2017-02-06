@@ -2,14 +2,32 @@ h3 = link_to :Departments, departments_path
 h1 =@department.name
 p.lead =@department.description
 
-- if(params[:product] || params[:supplier_name] || params[:organisation_name])
-  .pull-right
-    = link_to "Show all", @department
+==big_number show_big_money(@department.total_benefits_value), "Total Estimated Benefits"
 
-/h1 = hello_world "Peter"
+br.clear
 
-==big_number @contracts.count, link_to("Active Contracts", contracts_path(department_name:@department.name))
-==big_number human_value_of_contract_set(@contracts.active), "Value of active contracts"
+h2 #{@department.benefits.count} Benefits
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th Product Name
+        th Amount
+    tbody
+      - @department.benefits.each do | benefit |
+        tr
+          td =link_to benefit.product.name, benefit.product
+          td =link_to show_big_money(benefit.total_value_cents), benefit
+          
+          
+/
+  - if(params[:product] || params[:supplier_name] || params[:organisation_name])
+    .pull-right
+      = link_to "Show all", @department
+
+  ==big_number @contracts.count, link_to("Active Contracts", contracts_path(department_name:@department.name))
+  ==big_number human_value_of_contract_set(@contracts.active), "Value of active contracts"
 /
   br.clear
   .table-responsive
