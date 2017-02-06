@@ -59,7 +59,8 @@ class Benefit < ActiveRecord::Base
         record.department = Department.where(name: row['department']).first_or_create
         record.product = Product.where(name: row['product']).first_or_create
         #hacky way to get our enum value
-        record.state = Benefit.states[row['state'].downcase]
+        # TODO: Make this freetext until our states settle down...
+        #record.state = Benefit.states[row['state'].downcase]
 
         #save the record and add the child benefit years
         if(record.save!)
