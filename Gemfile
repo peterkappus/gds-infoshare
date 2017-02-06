@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#for more robust error logging on heroku
+gem 'rails_12factor'
+
 #use dotenv to load environment file
 #this way you can use "rails s" instaed of "heroku local" and get all your .env vars and still use the debugger, etc.
 gem 'dotenv-rails', :groups => [:development, :test]
