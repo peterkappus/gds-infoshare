@@ -34,13 +34,13 @@ dl.dl-horizontal
     dd
       = @benefit.state.capitalize
     
-h2 Target Benefits by Year
+h2 Target Benefits by Financial Year
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
     thead
       - @benefit.benefit_years.each do | by |
-        th=by.fy_end_date.year
+        th =(by.fy_end_date - 1.year).strftime("%Y") + "/" +  by.fy_end_date.strftime("%y")
     tbody
       tr
       - @benefit.benefit_years.each do | by |

@@ -2,11 +2,12 @@ h3 = link_to :Departments, departments_path
 h1 =@department.name
 p.lead =@department.description
 
-==big_number show_big_money(@department.total_benefits_value), "Total Estimated Benefits"
+h2 Lifetime Benefits
+
+==big_number show_big_money(@department.total_benefits_value), "Estimated Value"
+==big_number show_big_money(@department.benefits.count), "Estimated Count"
 
 br.clear
-
-h2 #{@department.benefits.count} Benefits
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
