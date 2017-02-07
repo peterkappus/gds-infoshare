@@ -1,5 +1,5 @@
 h3 =link_to :Home, root_path
-h1 CTS Products
+h1 CTS Products - #{show_big_money @products.map{|p| p.total_value_cents}.reduce(:+)}
 p.lead CTS is actively developing the following products. Click to learn more about how delivery is going and learn what benefits these products are currently providing.
 
 .product_list

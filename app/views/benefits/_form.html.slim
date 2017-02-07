@@ -11,6 +11,10 @@
         - @benefit.errors.full_messages.each do |msg|
           li= msg
   .form-group
+    = f.label 'Benefit title', class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :name, class: "form-control"
+  .form-group
     = f.label :department, class: "col-sm-2 control-label"
     .col-sm-10
       /= f.text_field :department, class: "form-control"
@@ -53,4 +57,4 @@
               input id="radio-inline-#{key}" type="radio" name="benefit[state]" value="#{key}" #{key.humanize.capitalize}
   .form-group
     .col-sm-offset-2.col-sm-10
-      = f.submit class: "btn btn-primary"
+      = f.submit class: "button btn-primary"
