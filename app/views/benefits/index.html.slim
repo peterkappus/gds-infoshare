@@ -13,7 +13,7 @@
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
-        th ID
+        th Name
         th =sort_link @q, :department_name, "Department"
         th =sort_link @q, :organisation_name, "Organisation"
         th =sort_link @q, :product_name, "Product"
@@ -27,7 +27,7 @@
     tbody
       - @benefits.each do | benefit |
         tr
-          td =link_to benefit.id, benefit
+          td =link_to benefit.name, benefit
           td = link_to benefit.department.name, benefit.department if benefit.department
           td = benefit.organisation.name if benefit.organisation
           /td = link_to benefit.organisation.name, benefit.organisation if benefit.organisation

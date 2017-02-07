@@ -19,7 +19,7 @@ class Benefit < ActiveRecord::Base
   def self.import(file)
     require 'csv' #probably should put this at the top, but I don't *always* want to include it... Some smarter way to bundle this up?
 
-    required_cols = %w(product department	organisation	location	original_offering	non_cts_alternative	cts_proposal	state	notes	evidence)
+    required_cols = %w(product name department	organisation	location	original_offering	non_cts_alternative	cts_proposal	state	notes	evidence)
 
     #subtract supplied columns from required columns to see if any are missing
     missing_cols = required_cols - CSV.read(file.path,headers: true).headers
@@ -59,7 +59,18 @@ class Benefit < ActiveRecord::Base
         #TODO: DRY this up...
         record.organisation = Organisation.where(name: row['organisation']).first_or_create
         record.department = Department.where(name: row['department']).first_or_create
-        record.product = Product.where(name: row['product']).first_or_create
+        product_name = row['product'].gsub(/ - CTS\d+/,'')
+        project_code = (row['product'].match(/CTS\d+/)).to_a[0]
+
+        #create new product
+        product = Product.where(name: product_name).first_or_create
+        #assign proj code to product
+        product.project_code = project_code
+        product.save!
+
+        #now assign to our record
+        record.product = product
+
         #hacky way to get our enum value
         # TODO: Make this freetext until our states settle down...
         #record.state = Benefit.states[row['state'].downcase]

@@ -8,7 +8,8 @@ p.lead CTS is actively developing the following products. Click to learn more ab
       - row.each do |product|
         .column-half
           h2 =link_to product.name, product
-          p #{pluralize(product.benefits.count, "benefit")} - (#{show_big_money(product.total_value_cents)})
+          small =product.project_code
+          p #{pluralize(product.benefits.count, "benefit")} - #{show_big_money(product.total_value_cents)}
     
   - if is_admin?
   = link_to "Create New Product", new_product_path, class: 'button btn-primary'

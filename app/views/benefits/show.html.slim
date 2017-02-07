@@ -1,5 +1,5 @@
 h3 = link_to :Benefits, benefits_path
-h1 Benefit Detail
+h1 #{@benefit.name} (#{show_big_money @benefit.total_value_cents})
 dl.dl-horizontal
   dt
     | Department:
@@ -8,14 +8,15 @@ dl.dl-horizontal
   dt
     | Organisation:
   dd
-    = link_to @benefit.organisation.name, @benefit.organisation if @benefit.organisation
+    = @benefit.organisation
   dt
     | Product:
   dd =link_to @benefit.product.name, @benefit.product
-  dt
-    | Location:
-  dd
-    = @benefit.location
+  - if !@benefit.location.empty?
+    dt
+      | Location:
+    dd
+      = @benefit.location
   dt
     | Original offering:
   dd
