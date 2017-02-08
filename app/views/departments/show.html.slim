@@ -15,12 +15,14 @@ br.clear
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
+        th Benefit Title
         th Product Name
         th State
         th Amount
     tbody
       - @department.benefits.each do | benefit |
         tr
+          td =link_to benefit.name, benefit
           td =link_to benefit.product.name, benefit.product
           td = benefit.state.name if benefit.state
           td =link_to show_big_money(benefit.total_value_cents), benefit

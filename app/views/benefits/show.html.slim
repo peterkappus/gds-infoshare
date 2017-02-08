@@ -1,43 +1,55 @@
-h3 = link_to :Benefits, benefits_path
 
-.pull-right.state
-  = @benefit.state.name.capitalize
-
-h1 #{@benefit.name} (#{show_big_money @benefit.total_value_cents})
-.metadata.dl-horizontal
-  dl
-    dt Department:
-    dd = link_to @benefit.department.name, @benefit.department
+.grid-row
+  .column-two-thirds
+    .header_block
+      h3 = link_to :Benefits, benefits_path
+      h1 #{@benefit.name} (#{show_big_money @benefit.total_value_cents})
+  .column-one-third
+    .pull-right
+      p.state 
+        = @benefit.state.name.capitalize
+      .evidence
+        - if @benefit.evidence
+          = link_to "View Evidence", @benefit.evidence, {target: "_blank"}
+        - else
+          p style="color: red" NO EVIDENCE
+          
+.grid-row
+  .column-one-third
+    .metadata.dl-horizontal
+      dl
+        dt Department:
+        dd = link_to @benefit.department.name, @benefit.department
+        
+        - if (@benefit.organisation)
+          dt Organisation:
+          dd = @benefit.organisation
+        
+        dt Product:
+        dd =link_to @benefit.product.name, @benefit.product
+        
+        - if !@benefit.location.to_s.empty?
+          dt Location:
+          dd = @benefit.location
+  .column-two-thirds
+    h2.top Original offering:
+    p = @benefit.original_offering
     
-    dt Organisation:
-    dd = @benefit.organisation
+    h2 Non-CTS alternative:
+    p = @benefit.non_cts_alternative
     
-    dt Product:
-    dd =link_to @benefit.product.name, @benefit.product
-    
-    - if !@benefit.location.to_s.empty?
-      dt Location:
-      dd = @benefit.location
-    
-    dt Original offering:
-    dd = @benefit.original_offering
-    
-    dt Non cts alternative:
-    dd = @benefit.non_cts_alternative
-    
-    dt Cts proposal:
+    h2 CTS proposal:
     dd = @benefit.cts_proposal
     
-h2 Target Benefits by Financial Year
-
-.clear.both
-
-.table-responsive
-  table.table.table-striped.table-bordered.table-hover
-    thead
-      - @benefit.benefit_years.each do | by |
-        th =(by.fy_end_date - 1.year).strftime("%Y") + "/" +  by.fy_end_date.strftime("%y")
-    tbody
-      tr
-      - @benefit.benefit_years.each do | by |
-        td = show_big_money(by.target_value_cents)
+    .clear style="margin-top: 5rem"
+    
+    h2 Target Benefits by Financial Year
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead
+          - @benefit.benefit_years.each do | by |
+            th =(by.fy_end_date - 1.year).strftime("%Y") + "/" +  by.fy_end_date.strftime("%y")
+        tbody
+          tr
+          - @benefit.benefit_years.each do | by |
+            td = show_big_money(by.target_value_cents)
