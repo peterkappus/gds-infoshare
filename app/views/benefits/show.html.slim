@@ -1,38 +1,36 @@
 h3 = link_to :Benefits, benefits_path
+
+.pull-right.state
+  = @benefit.state.name.capitalize
+
 h1 #{@benefit.name} (#{show_big_money @benefit.total_value_cents})
-dl.dl-horizontal
-  dt
-    | Department:
-  dd
-    = link_to @benefit.department.name, @benefit.department
-  dt
-    | Organisation:
-  dd
-    = @benefit.organisation
-  dt
-    | Product:
-  dd =link_to @benefit.product.name, @benefit.product
-  - if !@benefit.location.to_s.empty?
-    dt
-      | Location:
-    dd
-      = @benefit.location
-  dt
-    | Original offering:
-  dd
-    = @benefit.original_offering
-  dt
-    | Non cts alternative:
-  dd
-    = @benefit.non_cts_alternative
-  dt
-    | Cts proposal:
-  dd
-    = @benefit.cts_proposal
-  dt State:
-  dd = @benefit.state.name.capitalize
+.metadata.dl-horizontal
+  dl
+    dt Department:
+    dd = link_to @benefit.department.name, @benefit.department
+    
+    dt Organisation:
+    dd = @benefit.organisation
+    
+    dt Product:
+    dd =link_to @benefit.product.name, @benefit.product
+    
+    - if !@benefit.location.to_s.empty?
+      dt Location:
+      dd = @benefit.location
+    
+    dt Original offering:
+    dd = @benefit.original_offering
+    
+    dt Non cts alternative:
+    dd = @benefit.non_cts_alternative
+    
+    dt Cts proposal:
+    dd = @benefit.cts_proposal
     
 h2 Target Benefits by Financial Year
+
+.clear.both
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover

@@ -6,7 +6,7 @@ h1 = @product.name
 small =@product.project_code
 - if @product.description.present?
   p.lead = @product.description
-- else
+/- else
   p No description available. Please #{link_to "add a description", edit_product_path}.
 -if @product.benefits.empty?
   h2 Benefits
