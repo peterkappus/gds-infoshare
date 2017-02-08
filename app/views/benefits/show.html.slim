@@ -4,7 +4,7 @@ dl.dl-horizontal
   dt
     | Department:
   dd
-    = link_to @benefit.department, @benefit.department
+    = link_to @benefit.department.name, @benefit.department
   dt
     | Organisation:
   dd
@@ -29,11 +29,8 @@ dl.dl-horizontal
     | Cts proposal:
   dd
     = @benefit.cts_proposal
-  /
-    dt
-      | State:
-    dd
-      = @benefit.state.capitalize
+  dt State:
+  dd = @benefit.state.name.capitalize
     
 h2 Target Benefits by Financial Year
 

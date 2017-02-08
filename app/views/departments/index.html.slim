@@ -1,26 +1,11 @@
 h3 =link_to :Home, root_path
 h1 Departments
-p.lead These departments have contracts known to CTS. Click a name to view them.
-= paginate @departments
 
-.table-responsive
-  table.table.table-striped.table-bordered.table-hover
-    thead
-      tr
-        th Name
-        th Total Benefits
-        /th Description
-        /th contracts
-        /th contract value
-    tbody
-      - @departments.each do | department |
-        tr
-          td = link_to department.name, department
-          td = show_big_money(department.total_benefits_value)
-          /td = department.description
-          /td = department.contracts.count
-          /td 
-            - if (department.contracts.count > 0)
-              =show_big_money(department.contracts.pluck(:value_cents).reduce(:+)/100)
-
-= paginate @departments
+.product_list
+  - @departments.each_slice(3) do | row |
+    .grid-row
+      - row.each do |department|
+        .column-one-third
+          h2 =link_to department.name, department
+          p #{pluralize(department.benefits.count, "benefit")} - #{show_big_money(department.total_value_cents)}
+    

@@ -11,6 +11,10 @@ class Department < ActiveRecord::Base
     name
   end
 
+  #wraper to be consistent w/ Products
+  def total_value_cents
+    total_benefits_value
+  end
 
   #TODO: move to a concern...also appears in product
   def total_benefits_value

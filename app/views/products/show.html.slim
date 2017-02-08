@@ -24,6 +24,6 @@ small =@product.project_code
       - @product.benefits.each do |benefit|
         tr
           td =link_to benefit.name, benefit
-          td = link_to benefit.department, benefit.department
+          td = link_to benefit.department.name, benefit.department
           td = link_to benefit.location, benefit if benefit.location
           td = link_to show_big_money(benefit.total_value_cents), benefit

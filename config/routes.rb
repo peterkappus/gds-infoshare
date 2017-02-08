@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :states
   resources :benefit_years
   resources :benefits do
     collection do

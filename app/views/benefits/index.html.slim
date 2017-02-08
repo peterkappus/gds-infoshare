@@ -40,7 +40,7 @@
               = benefit.non_cts_alternative
             td
               = benefit.cts_proposal
-          td = benefit.state.titlecase if benefit.state
+          td = benefit.state.name.titlecase if benefit.state
           td = show_big_money(benefit.total_value_cents)
 
 = paginate @benefits

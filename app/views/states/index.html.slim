@@ -1,0 +1,35 @@
+.page-header
+  = link_to new_state_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New State
+  h1
+    | Listing states
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Name
+        th
+          | Position
+        th
+          | Description
+        th
+        th
+        th
+    tbody
+      - @states.each do | state |
+        tr
+          td
+            = state.name
+          td
+            = state.position
+          td
+            = state.description
+          td
+            = link_to 'Show', state
+          td
+            = link_to 'Edit', edit_state_path(state) 
+          td
+            = link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' } 

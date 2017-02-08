@@ -2,8 +2,9 @@ class Benefit < ActiveRecord::Base
   belongs_to :department
   belongs_to :organisation
   belongs_to :product
+  belongs_to :state
   has_many :benefit_years, dependent: :destroy #destroy years when benefit gets deleted
-  enum state: {targeted:0, planned:1, estimated:2, evidenced:3}
+  #enum state: {targeted:0, planned:1, estimated:2, evidenced:3}
   #default_scope { order(created_at: :desc) }
 
 
@@ -58,12 +59,16 @@ class Benefit < ActiveRecord::Base
         #find or create by short name...
         #TODO: DRY this up...
         record.organisation = Organisation.where(name: row['organisation']).first_or_create
-        record.department = Department.where(name: row['department']).first_or_create
-        product_name = row['product'].gsub(/ - CTS\d+/,'')
-        project_code = (row['product'].match(/CTS\d+/)).to_a[0]
+
+        record.department = Department.where(name: row['department']).first_or_create unless row['department'].to_s.empty?
+
+        product_name = row['product'].to_s.gsub(/ - CTS\d+/,'')
+
+        project_code = (row['product'].to_s.match(/CTS\d+/)).to_a[0]
 
         #create new product
         product = Product.where(name: product_name).first_or_create
+
         #assign proj code to product
         product.project_code = project_code
         product.save!
@@ -71,6 +76,9 @@ class Benefit < ActiveRecord::Base
         #now assign to our record
         record.product = product
 
+        state = State.where(name: row['state']).first_or_create
+        record.state = state
+        
         #hacky way to get our enum value
         # TODO: Make this freetext until our states settle down...
         #record.state = Benefit.states[row['state'].downcase]
