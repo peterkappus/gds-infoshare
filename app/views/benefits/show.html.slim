@@ -12,7 +12,7 @@ dl.dl-horizontal
   dt
     | Product:
   dd =link_to @benefit.product.name, @benefit.product
-  - if !@benefit.location.empty?
+  - if !@benefit.location.to_s.empty?
     dt
       | Location:
     dd
