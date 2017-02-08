@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208115653) do
+ActiveRecord::Schema.define(version: 20170208152815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170208115653) do
   add_index "benefits", ["department_id"], name: "index_benefits_on_department_id", using: :btree
   add_index "benefits", ["organisation_id"], name: "index_benefits_on_organisation_id", using: :btree
   add_index "benefits", ["product_id"], name: "index_benefits_on_product_id", using: :btree
+  add_index "benefits", ["state_id"], name: "index_benefits_on_state_id", using: :btree
 
   create_table "contracts", force: :cascade do |t|
     t.string   "reference"
