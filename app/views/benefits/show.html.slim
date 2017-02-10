@@ -3,11 +3,13 @@
   .column-two-thirds
     .header_block
       h3 = link_to :Benefits, benefits_path
-      h1 #{@benefit.name} (#{show_big_money @benefit.total_value_cents})
+      h1 #{@benefit.name}
   .column-one-third
-    .pull-right
-      p.state 
-        = @benefit.state.name.capitalize
+    .pull-right.benefit_meta
+      small Lifetime benefit
+      h2 =show_big_money @benefit.total_value_cents
+      p.state style="background: #{@benefit.state.color}"
+        = @benefit.state.name.to_s.capitalize
       .evidence
         - if @benefit.evidence
           = link_to "View Evidence", @benefit.evidence, {target: "_blank"}
@@ -18,19 +20,23 @@
   .column-one-third
     .metadata.dl-horizontal
       dl
+        dt Product:
+        dd =link_to @benefit.product.name, @benefit.product
+        dt Owner:
+        dd = @benefit.owner
+      
         dt Department:
         dd = link_to @benefit.department.name, @benefit.department
         
         - if (@benefit.organisation)
           dt Organisation:
           dd = @benefit.organisation
-        
-        dt Product:
-        dd =link_to @benefit.product.name, @benefit.product
-        
         - if !@benefit.location.to_s.empty?
           dt Location:
           dd = @benefit.location
+        
+      
+        
   .column-two-thirds
     h2.top Original offering:
     p = @benefit.original_offering

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208152815) do
+ActiveRecord::Schema.define(version: 20170209120426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170208152815) do
     t.text     "evidence"
     t.string   "name"
     t.integer  "state_id"
+    t.string   "owner"
   end
 
   add_index "benefits", ["department_id"], name: "index_benefits_on_department_id", using: :btree
@@ -142,6 +143,7 @@ ActiveRecord::Schema.define(version: 20170208152815) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "color"
   end
 
   create_table "users", force: :cascade do |t|

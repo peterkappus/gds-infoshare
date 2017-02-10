@@ -15,9 +15,10 @@
       tr
         th Benefit Title
         th =sort_link @q, :department_name, "Department"
-        th =sort_link @q, :organisation_name, "Organisation"
-        th =sort_link @q, :product_name, "Product"
-        th =sort_link @q, :location
+        th Benefit Owner
+        /th =sort_link @q, :organisation_name, "Organisation"
+        /th =sort_link @q, :product_name, "Product"
+        /th =sort_link @q, :location
         th =sort_link @q, :state
         th =sort_link @q, :total_value_cents, "Value (£)"
         /
@@ -29,10 +30,11 @@
         tr
           td =link_to benefit.name, benefit
           td = link_to benefit.department.name, benefit.department if benefit.department
-          td = benefit.organisation.name if benefit.organisation
+          td =benefit.owner
+          /td = benefit.organisation.name if benefit.organisation
           /td = link_to benefit.organisation.name, benefit.organisation if benefit.organisation
-          td = link_to benefit.product.name, benefit.product
-          td = benefit.location
+          /td = link_to benefit.product.name, benefit.product
+          /td = benefit.location
           /
             td
               = benefit.original_offering
@@ -40,7 +42,7 @@
               = benefit.non_cts_alternative
             td
               = benefit.cts_proposal
-          td = benefit.state.name.titlecase if benefit.state
+          td = benefit.state.name.to_s.titlecase if benefit.state
           td = show_big_money(benefit.total_value_cents)
 
 = paginate @benefits

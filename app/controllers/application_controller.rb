@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  #export our helper method
+  #export our helper methods
   helper_method :signed_in?, :current_user, :is_admin?
 
   before_filter :check_login#, :except=>:about
@@ -11,6 +11,17 @@ class ApplicationController < ActionController::Base
   #admin methods
   def is_admin?
     signed_in? && current_user.admin?
+  end
+
+  # Get last day of financial year from a given date
+  def fy_end(date)
+    year = date.year
+    # are we in the first three months of the year?
+    if(date.month < 4)
+      Date.new(date.year,3,31)
+    else
+      Date.new(date.year+1,3,31)
+    end
   end
 
   def check_admin

@@ -15,13 +15,20 @@
     .col-sm-10
       = f.text_field :name, class: "form-control"
   .form-group
-    = f.label :position, class: "col-sm-2 control-label"
+    = f.label :color, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.number_field :position, class: "form-control"
+      = f.text_field :color, class: "form-control"
+  /
+    .form-group
+      = f.label :position, class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.number_field :position, class: "form-control"
   .form-group
     = f.label :description, class: "col-sm-2 control-label"
     .col-sm-10
       = f.text_area :description, class: "form-control"
   .form-group
     .col-sm-offset-2.col-sm-10
-      = f.submit class: "btn btn-primary"
+      p = f.submit class: "button btn-primary"
+      p = link_to 'Cancel', "javascript: history.go(-1)"
+      p = link_to 'Destroy', @state, method: :delete, data: { confirm: 'Are you sure?' }, class: "button danger"
