@@ -24,7 +24,7 @@ class Contract < ActiveRecord::Base
   def self.import(file)
     require 'csv' #probably should put this at the top, but I don't *always* want to include it... Some smarter way to bundle this up?
 
-    required_cols = %w(reference source department_id supplier_name value end_date parent project product value start_date years sector annual_value category sub_contractors notes status year_awarded client)
+    required_cols = %w(reference source supplier_name value end_date project product value start_date years sector annual_value category sub_contractors notes status year_awarded client)
 
     #subtract supplied columns from required columns to see if any are missing
     missing_cols = required_cols - CSV.read(file.path,headers: true).headers
@@ -55,8 +55,8 @@ class Contract < ActiveRecord::Base
         end
 
         #strip pound signs and commas from money columns
-        record.value = Monetize.parse(row['value'])
-        #record.annual_value = Monetize.parse(row['annual_value'])
+        record.value = Monetize.parse(row['value'].to_i)
+        record.annual_value = Monetize.parse(row['annual_value'].to_i)
 
         #find or create by short name...
         #TODO: DRY this up...

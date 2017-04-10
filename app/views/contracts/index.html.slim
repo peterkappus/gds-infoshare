@@ -45,7 +45,8 @@ p.lead These are the contracts known to CTS. They are obtained via Kable, The Co
           td
             /= "£" + number_to_human(contract.value, units: {thousand: "k", million: "m", billion: "bn"}).to_s
             =  show_big_money contract.value
-          td = link_to contract.end_date.strftime("%d %h %Y"), end_date_before:contract.end_date if contract.end_date
+          td(nowrap)
+              = link_to contract.end_date.strftime("%d %h %Y"), end_date_before:contract.end_date if contract.end_date
           td = link_to contract.product, product: contract.product if contract.product
 
 = paginate @contracts

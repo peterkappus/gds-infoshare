@@ -8,7 +8,7 @@
     | @media (min-width: 1020px) { main { margin: 0 auto; } }
   = stylesheet_link_tag "application", media: :all
 - content_for :page_title do
-  | CTS Benefits
+  | CTS Dashboard
 /- content_for :inside_header do
   - if signed_in?
     form#search.site-search method="get" action="..."
@@ -23,17 +23,17 @@
     .content
       a href='#proposition-links' class='js-header-toggle menu' Menu
       nav#proposition-menu
-        =link_to "CTS Benefits", root_path, :id=>"proposition-name"
+        =link_to "CTS Contracts Data", root_path, :id=>"proposition-name"
         - if signed_in?
           ul#proposition-links
-            li = link_to :Products, products_path
-            li = link_to :Benefits, benefits_path
+            /li = link_to :Products, products_path
+            /li = link_to :Benefits, benefits_path
             /li = link_to :Portfolios, portfolios_path
-            / li = link_to :Contracts, contracts_path
-            li = link_to :Departments, departments_path
+            /li = link_to :Contracts, contracts_path
+            /li = link_to :Departments, departments_path
             /li = link_to :Organisations, organisations_path
             /li = link_to :Deployments, deployments_path
-            li =link_to "About", about_path
+            /li =link_to "About", about_path
             /li = link_to :People, people_path
             //li = link_to "Sign out", signout_path
             -if is_admin?
