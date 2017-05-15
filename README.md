@@ -1,5 +1,5 @@
-# gds-infoshare
-A simple tool to share information within Common Technology Services within GDS.
+# infoshare
+A simple tool to share information about contracts and service delivery.
 
 ## Schema
 
